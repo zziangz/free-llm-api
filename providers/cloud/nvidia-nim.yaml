@@ -1,0 +1,36 @@
+$id: "nvidia-nim"
+name: "NVIDIA NIM"
+description: "NVIDIA inference microservices for AI models"
+url: "https://build.nvidia.com"
+docs: "https://docs.nvidia.com/nim"
+
+auth:
+  type: "bearer"
+  keyLabel: "NVIDIA API Key"
+  keyUrl: "https://build.nvidia.com/explore/discover"
+
+endpoint:
+  baseUrl: "https://integrate.api.nvidia.com/v1"
+  protocol: "openai"
+
+limits:
+  requestsPerMinute: 40
+
+models:
+  - id: "llama-3.3-70b-instruct"
+    upstream: "meta/llama-3.3-70b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+status: "active"
+tags:
+  - free
+  - rate-limited

@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://freeway.ai/schemas/tokenbank-provider-v1.json",
+  "title": "Freeway Tokenbank Provider Schema",
+  "description": "Schema for provider definitions in the Freeway tokenbank",
+  "type": "object",
+  "required": ["$id", "name", "description", "auth", "endpoint", "models", "status"],
+  "properties": {
+    "$id": {
+      "type": "string",
+      "description": "Unique provider identifier",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name for the provider"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the provider"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Provider website URL"
+    },
+    "docs": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to provider documentation"
+    },
+    "auth": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["bearer", "query", "header", "none"],
+          "description": "Authentication method"
+        },
+        "keyLabel": {
+          "type": "string",
+          "description": "Human-readable label for the API key"
+        },
+        "keyUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL where user can obtain an API key"
+        },
+        "keyPrefix": {
+          "type": "string",
+          "description": "Expected prefix for the API key (for validation hint)"
+        },
+        "keyParam": {
+          "type": "string",
+          "description": "Parameter name for query/header auth types"
+        }
+      }
+    },
+    "endpoint": {
+      "type": "object",
+      "required": ["baseUrl", "protocol"],
+      "properties": {
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "API base URL"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": ["openai", "ollama", "anthropic", "gemini", "custom"],
+          "description": "API protocol to use"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional static headers to send"
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "requestsPerMinute": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "requestsPerDay": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tokensPerMinute": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tokensPerDay": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "concurrent": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "upstream", "free", "modalities", "contextWindow"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Local model identifier"
+          },
+          "upstream": {
+            "type": "string",
+            "description": "Actual model name to send to the API"
+          },
+          "free": {
+            "type": "boolean",
+            "description": "Whether this model is available on the free tier"
+          },
+          "modalities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "text-to-text",
+                "text-image-to-text",
+                "image-to-text",
+                "text-to-image",
+                "image-to-image",
+                "text-to-audio",
+                "audio-to-text",
+                "text-to-embedding",
+                "text-to-video",
+                "video-to-text"
+              ]
+            },
+            "minItems": 1,
+            "description": "Input/output modalities this model supports"
+          },
+          "contextWindow": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum context window in tokens"
+          },
+          "maxOutputTokens": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Maximum output tokens"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "streaming": {
+                "type": "boolean"
+              },
+              "tools": {
+                "type": "boolean"
+              },
+              "vision": {
+                "type": "boolean"
+              },
+              "json": {
+                "type": "boolean"
+              }
+            }
+          },
+          "install": {
+            "type": "string",
+            "description": "Install command for local models (e.g., 'ollama pull llama3')"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "broken"],
+      "description": "Provider status"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorization"
+    }
+  }
+}

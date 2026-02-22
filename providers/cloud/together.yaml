@@ -1,0 +1,50 @@
+$id: "together"
+name: "Together AI"
+description: "Open-source model hosting with free tier"
+url: "https://together.ai"
+docs: "https://docs.together.ai"
+
+auth:
+  type: "bearer"
+  keyLabel: "Together API Key"
+  keyUrl: "https://api.together.xyz/settings/api-keys"
+
+endpoint:
+  baseUrl: "https://api.together.xyz/v1"
+  protocol: "openai"
+
+limits:
+  requestsPerMinute: 60
+
+models:
+  - id: "llama-3.3-70b"
+    upstream: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "qwen-2.5-72b"
+    upstream: "Qwen/Qwen2.5-72B-Instruct-Turbo"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+status: "active"
+env: "TOGETHER_API_KEY"
+tags:
+  - free
+  - fast

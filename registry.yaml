@@ -1,0 +1,160 @@
+version: "2.0"
+updated: "2026-02-19"
+description: "Freeway Tokenbank - Free API providers registry"
+
+providers:
+  cloud:
+    - id: "github-models"
+      name: "GitHub Models"
+      free: true
+      rateLimited: true
+      models: 4
+      file: "providers/cloud/github-models.yaml"
+
+    - id: "google-ai-studio"
+      name: "Google AI Studio"
+      free: true
+      rateLimited: true
+      models: 3
+      file: "providers/cloud/google-ai-studio.yaml"
+
+    - id: "openrouter"
+      name: "OpenRouter"
+      free: true
+      rateLimited: true
+      models: 4
+      file: "providers/cloud/openrouter.yaml"
+
+    - id: "groq"
+      name: "Groq"
+      free: true
+      rateLimited: true
+      models: 3
+      file: "providers/cloud/groq.yaml"
+
+    - id: "cerebras"
+      name: "Cerebras"
+      free: true
+      rateLimited: true
+      models: 2
+      file: "providers/cloud/cerebras.yaml"
+
+    - id: "together"
+      name: "Together AI"
+      free: true
+      rateLimited: true
+      models: 2
+      file: "providers/cloud/together.yaml"
+
+    - id: "deepseek"
+      name: "DeepSeek"
+      free: true
+      rateLimited: true
+      models: 2
+      file: "providers/cloud/deepseek.yaml"
+
+    - id: "mistral"
+      name: "Mistral"
+      free: true
+      rateLimited: true
+      models: 2
+      file: "providers/cloud/mistral.yaml"
+
+    - id: "nvidia-nim"
+      name: "NVIDIA NIM"
+      free: true
+      rateLimited: true
+      models: 1
+      file: "providers/cloud/nvidia-nim.yaml"
+
+    - id: "vercel-ai"
+      name: "Vercel AI Gateway"
+      free: true
+      rateLimited: true
+      models: 1
+      file: "providers/cloud/vercel-ai.yaml"
+
+  credit-based:
+    - id: "hyperbolic"
+      name: "Hyperbolic"
+      free: false
+      credits: "$1"
+      models: 20
+      file: "providers/credit-based/hyperbolic.yaml"
+
+    - id: "nebius"
+      name: "Nebius"
+      free: false
+      credits: "$1"
+      models: 10
+      file: "providers/credit-based/nebius.yaml"
+
+    - id: "sambanova"
+      name: "SambaNova Cloud"
+      free: false
+      credits: "$5 for 3 months"
+      models: 15
+      file: "providers/credit-based/sambanova.yaml"
+
+  local:
+    - id: "local-ollama"
+      name: "Ollama"
+      free: true
+      rateLimited: false
+      models: "dynamic"
+      file: "providers/local/ollama.yaml"
+
+    - id: "local-vllm"
+      name: "vLLM"
+      free: true
+      rateLimited: false
+      models: "dynamic"
+      file: "providers/local/vllm.yaml"
+
+    - id: "local-lm-studio"
+      name: "LM Studio"
+      free: true
+      rateLimited: false
+      models: "dynamic"
+      file: "providers/local/lm-studio.yaml"
+
+modalities:
+  text-to-text:
+    description: "Text input, text output"
+    examples: ["GPT-4", "Llama", "Claude"]
+  
+  text-image-to-text:
+    description: "Text and image input, text output"
+    examples: ["GPT-4o", "Gemini Pro Vision", "Claude 3"]
+  
+  image-to-text:
+    description: "Image input, text output"
+    examples: ["BLIP", "LLaVA"]
+  
+  text-to-image:
+    description: "Text input, image output"
+    examples: ["Stable Diffusion", "Flux", "DALL-E"]
+  
+  image-to-image:
+    description: "Image input, image output"
+    examples: ["SD img2img", "ControlNet"]
+  
+  text-to-audio:
+    description: "Text input, audio output"
+    examples: ["TTS models", "Bark"]
+  
+  audio-to-text:
+    description: "Audio input, text output"
+    examples: ["Whisper"]
+  
+  text-to-embedding:
+    description: "Text input, vector output"
+    examples: ["text-embedding-3", "BGE"]
+  
+  text-to-video:
+    description: "Text input, video output"
+    examples: ["Sora", "Runway"]
+  
+  video-to-text:
+    description: "Video input, text output"
+    examples: ["Video understanding models"]

@@ -1,0 +1,78 @@
+$id: "openrouter"
+name: "OpenRouter"
+description: "Model aggregator with free tier options"
+url: "https://openrouter.ai"
+docs: "https://openrouter.ai/docs"
+
+auth:
+  type: "bearer"
+  keyLabel: "OpenRouter API Key"
+  keyUrl: "https://openrouter.ai/settings/keys"
+  keyPrefix: "sk-or-"
+
+endpoint:
+  baseUrl: "https://openrouter.ai/api/v1"
+  protocol: "openai"
+
+limits:
+  requestsPerMinute: 20
+  requestsPerDay: 50
+
+models:
+  - id: "llama-3.3-70b-free"
+    upstream: "meta-llama/llama-3.3-70b-instruct:free"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "llama-3.2-3b-free"
+    upstream: "meta-llama/llama-3.2-3b-instruct:free"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "gemma-2-9b-free"
+    upstream: "google/gemma-2-9b-it:free"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "qwen-2.5-72b-free"
+    upstream: "qwen/qwen-2.5-72b-instruct:free"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+status: "active"
+env: "OPENROUTER_API_KEY"
+tags:
+  - free
+  - aggregator

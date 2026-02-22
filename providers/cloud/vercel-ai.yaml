@@ -1,0 +1,37 @@
+$id: "vercel-ai"
+name: "Vercel AI Gateway"
+description: "Vercel's AI gateway routing to multiple providers"
+url: "https://vercel.com/ai"
+docs: "https://vercel.com/docs/ai-gateway"
+
+auth:
+  type: "bearer"
+  keyLabel: "Vercel AI Key"
+  keyUrl: "https://vercel.com/dashboard"
+
+endpoint:
+  baseUrl: "https://api.vercel.ai/v1"
+  protocol: "openai"
+
+limits:
+  requestsPerMonth: 5000
+
+models:
+  - id: "auto"
+    upstream: "auto"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+status: "active"
+env: "VERCEL_API_KEY"
+tags:
+  - free
+  - gateway

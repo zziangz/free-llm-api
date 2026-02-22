@@ -1,0 +1,7 @@
+.env
+# we use config.yaml to control the endpoints and apiKey
+.env.example
+# vim 
+*.swp
+# draft
+draft.md

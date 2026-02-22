@@ -1,0 +1,87 @@
+$id: "local-ollama"
+name: "Ollama"
+description: "Run LLMs locally with simple CLI"
+url: "https://ollama.com"
+docs: "https://github.com/ollama/ollama/tree/main/docs"
+
+auth:
+  type: "none"
+
+endpoint:
+  baseUrl: "http://localhost:11434"
+  protocol: "ollama"
+
+limits: {}
+
+models:
+  - id: "llama3.3:70b"
+    upstream: "llama3.3:70b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    install: "ollama pull llama3.3:70b"
+
+  - id: "llama3.1:8b"
+    upstream: "llama3.1:8b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    install: "ollama pull llama3.1:8b"
+
+  - id: "llava:13b"
+    upstream: "llava:13b"
+    free: true
+    modalities:
+      - text-image-to-text
+    contextWindow: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    install: "ollama pull llava:13b"
+
+  - id: "qwen2.5:72b"
+    upstream: "qwen2.5:72b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    install: "ollama pull qwen2.5:72b"
+
+  - id: "deepseek-r1:70b"
+    upstream: "deepseek-r1:70b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    install: "ollama pull deepseek-r1:70b"
+
+status: "active"
+env: "OLLAMA_API_KEY"
+tags:
+  - local
+  - free
+  - unlimited

@@ -1,0 +1,34 @@
+$id: "sambanova"
+name: "SambaNova Cloud"
+description: "Enterprise AI platform with fast inference"
+url: "https://sambanova.ai"
+docs: "https://docs.sambanova.ai/cloud"
+
+auth:
+  type: "bearer"
+  keyLabel: "SambaNova API Key"
+  keyUrl: "https://cloud.sambanova.ai/"
+
+endpoint:
+  baseUrl: "https://api.sambanova.ai/v1"
+  protocol: "openai"
+
+limits: {}
+
+models:
+  - id: "llama-3.3-70b-instruct"
+    upstream: "Meta-Llama-3.3-70B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+status: "active"
+tags:
+  - credit-based
+  - enterprise

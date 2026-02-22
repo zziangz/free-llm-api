@@ -1,0 +1,34 @@
+$id: "local-lm-studio"
+name: "LM Studio"
+description: "Run LLMs locally with GUI and API server"
+url: "https://lmstudio.ai"
+docs: "https://lmstudio.ai/docs"
+
+auth:
+  type: "none"
+
+endpoint:
+  baseUrl: "http://localhost:1234"
+  protocol: "openai"
+
+limits: {}
+
+models:
+  - id: "auto"
+    upstream: "auto"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+status: "active"
+tags:
+  - local
+  - free
+  - unlimited
+  - gui

@@ -1,0 +1,52 @@
+$id: "mistral"
+name: "Mistral"
+description: "Open-source and proprietary models from Mistral AI"
+url: "https://mistral.ai"
+docs: "https://docs.mistral.ai"
+
+auth:
+  type: "bearer"
+  keyLabel: "Mistral API Key"
+  keyUrl: "https://console.mistral.ai/api-keys"
+
+endpoint:
+  baseUrl: "https://api.mistral.ai/v1"
+  protocol: "openai"
+
+limits:
+  requestsPerMinute: 1
+  tokensPerMinute: 500000
+  tokensPerMonth: 1000000000
+
+models:
+  - id: "mistral-small-latest"
+    upstream: "mistral-small-latest"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "codestral-latest"
+    upstream: "codestral-latest"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32000
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+status: "active"
+env: "MISTRAL_API_KEY"
+tags:
+  - free
+  - rate-limited
