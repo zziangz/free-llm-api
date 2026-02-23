@@ -1,0 +1,2044 @@
+$id: nvidia-nim
+name: NVIDIA NIM
+description: NVIDIA Inference Microservices - Self-hosted & cloud models
+url: https://build.nvidia.com
+docs: https://docs.api.nvidia.com
+auth:
+  type: bearer
+  keyLabel: NVIDIA API Key
+  keyUrl: https://build.nvidia.com/explore/discover
+  keyPrefix: nvapi-
+endpoint:
+  baseUrl: https://integrate.api.nvidia.com/v1
+  protocol: openai
+limits:
+  requests:
+    perMinute: 30
+    perDay: 1000
+models:
+- id: meta/llama-3.1-405b-instruct
+  upstream: meta/llama-3.1-405b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.1-nemotron-70b-instruct
+  upstream: nvidia/llama-3.1-nemotron-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.3-70b-instruct
+  upstream: meta/llama-3.3-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.1-70b-instruct
+  upstream: meta/llama-3.1-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.1-nemotron-51b-instruct
+  upstream: nvidia/llama-3.1-nemotron-51b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/codellama-70b
+  upstream: meta/codellama-70b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 100000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama3-70b-instruct
+  upstream: meta/llama3-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: deepseek-ai/deepseek-v3.2
+  upstream: deepseek-ai/deepseek-v3.2
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 163840
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: deepseek-ai/deepseek-v3.1
+  upstream: deepseek-ai/deepseek-v3.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 163840
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: deepseek-ai/deepseek-r1-distill-qwen-32b
+  upstream: deepseek-ai/deepseek-r1-distill-qwen-32b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: abacusai/dracarys-llama-3.1-70b-instruct
+  upstream: abacusai/dracarys-llama-3.1-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3-27b-it
+  upstream: google/gemma-3-27b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-2-27b-it
+  upstream: google/gemma-2-27b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-nemotron
+  upstream: mistralai/mistral-nemotron
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: 01-ai/yi-large
+  upstream: 01-ai/yi-large
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: adept/fuyu-8b
+  upstream: adept/fuyu-8b
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: ai21labs/jamba-1.5-large-instruct
+  upstream: ai21labs/jamba-1.5-large-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ai21labs/jamba-1.5-mini-instruct
+  upstream: ai21labs/jamba-1.5-mini-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: aisingapore/sea-lion-7b-instruct
+  upstream: aisingapore/sea-lion-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: baichuan-inc/baichuan2-13b-chat
+  upstream: baichuan-inc/baichuan2-13b-chat
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: bigcode/starcoder2-15b
+  upstream: bigcode/starcoder2-15b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: bigcode/starcoder2-7b
+  upstream: bigcode/starcoder2-7b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: bytedance/seed-oss-36b-instruct
+  upstream: bytedance/seed-oss-36b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: databricks/dbrx-instruct
+  upstream: databricks/dbrx-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: deepseek-ai/deepseek-coder-6.7b-instruct
+  upstream: deepseek-ai/deepseek-coder-6.7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 16384
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: deepseek-ai/deepseek-r1-distill-llama-8b
+  upstream: deepseek-ai/deepseek-r1-distill-llama-8b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: deepseek-ai/deepseek-r1-distill-qwen-14b
+  upstream: deepseek-ai/deepseek-r1-distill-qwen-14b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: deepseek-ai/deepseek-r1-distill-qwen-7b
+  upstream: deepseek-ai/deepseek-r1-distill-qwen-7b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: deepseek-ai/deepseek-v3.1-terminus
+  upstream: deepseek-ai/deepseek-v3.1-terminus
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 163840
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/codegemma-1.1-7b
+  upstream: google/codegemma-1.1-7b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/codegemma-7b
+  upstream: google/codegemma-7b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/deplot
+  upstream: google/deplot
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: google/gemma-2-2b-it
+  upstream: google/gemma-2-2b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-2-9b-it
+  upstream: google/gemma-2-9b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-2b
+  upstream: google/gemma-2b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3-12b-it
+  upstream: google/gemma-3-12b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3-1b-it
+  upstream: google/gemma-3-1b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3-4b-it
+  upstream: google/gemma-3-4b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3n-e2b-it
+  upstream: google/gemma-3n-e2b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-3n-e4b-it
+  upstream: google/gemma-3n-e4b-it
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/gemma-7b
+  upstream: google/gemma-7b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/paligemma
+  upstream: google/paligemma
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: google/recurrentgemma-2b
+  upstream: google/recurrentgemma-2b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google/shieldgemma-9b
+  upstream: google/shieldgemma-9b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: gotocompany/gemma-2-9b-cpt-sahabatai-instruct
+  upstream: gotocompany/gemma-2-9b-cpt-sahabatai-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-3.0-3b-a800m-instruct
+  upstream: ibm/granite-3.0-3b-a800m-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-3.0-8b-instruct
+  upstream: ibm/granite-3.0-8b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-3.3-8b-instruct
+  upstream: ibm/granite-3.3-8b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-34b-code-instruct
+  upstream: ibm/granite-34b-code-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-8b-code-instruct
+  upstream: ibm/granite-8b-code-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ibm/granite-guardian-3.0-8b
+  upstream: ibm/granite-guardian-3.0-8b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: igenius/colosseum_355b_instruct_16k
+  upstream: igenius/colosseum_355b_instruct_16k
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 16000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: igenius/italia_10b_instruct_16k
+  upstream: igenius/italia_10b_instruct_16k
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 16000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: institute-of-science-tokyo/llama-3.1-swallow-70b-instruct-v0.1
+  upstream: institute-of-science-tokyo/llama-3.1-swallow-70b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: institute-of-science-tokyo/llama-3.1-swallow-8b-instruct-v0.1
+  upstream: institute-of-science-tokyo/llama-3.1-swallow-8b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: marin/marin-8b-instruct
+  upstream: marin/marin-8b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mediatek/breeze-7b-instruct
+  upstream: mediatek/breeze-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.1-8b-instruct
+  upstream: meta/llama-3.1-8b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.2-11b-vision-instruct
+  upstream: meta/llama-3.2-11b-vision-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: meta/llama-3.2-1b-instruct
+  upstream: meta/llama-3.2-1b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.2-3b-instruct
+  upstream: meta/llama-3.2-3b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama-3.2-90b-vision-instruct
+  upstream: meta/llama-3.2-90b-vision-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: meta/llama-4-maverick-17b-128e-instruct
+  upstream: meta/llama-4-maverick-17b-128e-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: meta/llama-4-scout-17b-16e-instruct
+  upstream: meta/llama-4-scout-17b-16e-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: meta/llama-guard-4-12b
+  upstream: meta/llama-guard-4-12b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: meta/llama2-70b
+  upstream: meta/llama2-70b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 4096
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta/llama3-8b-instruct
+  upstream: meta/llama3-8b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/kosmos-2
+  upstream: microsoft/kosmos-2
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: microsoft/phi-3-medium-128k-instruct
+  upstream: microsoft/phi-3-medium-128k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-medium-4k-instruct
+  upstream: microsoft/phi-3-medium-4k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 4096
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-mini-128k-instruct
+  upstream: microsoft/phi-3-mini-128k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-mini-4k-instruct
+  upstream: microsoft/phi-3-mini-4k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 4096
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-small-128k-instruct
+  upstream: microsoft/phi-3-small-128k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-small-8k-instruct
+  upstream: microsoft/phi-3-small-8k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3-vision-128k-instruct
+  upstream: microsoft/phi-3-vision-128k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: microsoft/phi-3.5-mini-instruct
+  upstream: microsoft/phi-3.5-mini-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3.5-moe-instruct
+  upstream: microsoft/phi-3.5-moe-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-3.5-vision-instruct
+  upstream: microsoft/phi-3.5-vision-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: microsoft/phi-4-mini-flash-reasoning
+  upstream: microsoft/phi-4-mini-flash-reasoning
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 16384
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: microsoft/phi-4-mini-instruct
+  upstream: microsoft/phi-4-mini-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 16384
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: microsoft/phi-4-multimodal-instruct
+  upstream: microsoft/phi-4-multimodal-instruct
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: minimaxai/minimax-m2
+  upstream: minimaxai/minimax-m2
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 1000000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: minimaxai/minimax-m2.1
+  upstream: minimaxai/minimax-m2.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 1000000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/codestral-22b-instruct-v0.1
+  upstream: mistralai/codestral-22b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/devstral-2-123b-instruct-2512
+  upstream: mistralai/devstral-2-123b-instruct-2512
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/magistral-small-2506
+  upstream: mistralai/magistral-small-2506
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mamba-codestral-7b-v0.1
+  upstream: mistralai/mamba-codestral-7b-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mathstral-7b-v0.1
+  upstream: mistralai/mathstral-7b-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/ministral-14b-instruct-2512
+  upstream: mistralai/ministral-14b-instruct-2512
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-7b-instruct-v0.2
+  upstream: mistralai/mistral-7b-instruct-v0.2
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-7b-instruct-v0.3
+  upstream: mistralai/mistral-7b-instruct-v0.3
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-large
+  upstream: mistralai/mistral-large
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-large-2-instruct
+  upstream: mistralai/mistral-large-2-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-large-3-675b-instruct-2512
+  upstream: mistralai/mistral-large-3-675b-instruct-2512
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-medium-3-instruct
+  upstream: mistralai/mistral-medium-3-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-small-24b-instruct
+  upstream: mistralai/mistral-small-24b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mistral-small-3.1-24b-instruct-2503
+  upstream: mistralai/mistral-small-3.1-24b-instruct-2503
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mixtral-8x22b-instruct-v0.1
+  upstream: mistralai/mixtral-8x22b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 65536
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mixtral-8x22b-v0.1
+  upstream: mistralai/mixtral-8x22b-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistralai/mixtral-8x7b-instruct-v0.1
+  upstream: mistralai/mixtral-8x7b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: moonshotai/kimi-k2-instruct
+  upstream: moonshotai/kimi-k2-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 200000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: moonshotai/kimi-k2-instruct-0905
+  upstream: moonshotai/kimi-k2-instruct-0905
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 200000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: moonshotai/kimi-k2-thinking
+  upstream: moonshotai/kimi-k2-thinking
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 200000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: moonshotai/kimi-k2.5
+  upstream: moonshotai/kimi-k2.5
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 200000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: nv-mistralai/mistral-nemo-12b-instruct
+  upstream: nv-mistralai/mistral-nemo-12b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/cosmos-reason2-8b
+  upstream: nvidia/cosmos-reason2-8b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/llama-3.1-nemoguard-8b-content-safety
+  upstream: nvidia/llama-3.1-nemoguard-8b-content-safety
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/llama-3.1-nemoguard-8b-topic-control
+  upstream: nvidia/llama-3.1-nemoguard-8b-topic-control
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/llama-3.1-nemotron-70b-reward
+  upstream: nvidia/llama-3.1-nemotron-70b-reward
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/llama-3.1-nemotron-nano-4b-v1.1
+  upstream: nvidia/llama-3.1-nemotron-nano-4b-v1.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.1-nemotron-nano-8b-v1
+  upstream: nvidia/llama-3.1-nemotron-nano-8b-v1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.1-nemotron-nano-vl-8b-v1
+  upstream: nvidia/llama-3.1-nemotron-nano-vl-8b-v1
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: nvidia/llama-3.1-nemotron-safety-guard-8b-v3
+  upstream: nvidia/llama-3.1-nemotron-safety-guard-8b-v3
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/llama-3.1-nemotron-ultra-253b-v1
+  upstream: nvidia/llama-3.1-nemotron-ultra-253b-v1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.3-nemotron-super-49b-v1
+  upstream: nvidia/llama-3.3-nemotron-super-49b-v1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama-3.3-nemotron-super-49b-v1.5
+  upstream: nvidia/llama-3.3-nemotron-super-49b-v1.5
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama3-chatqa-1.5-70b
+  upstream: nvidia/llama3-chatqa-1.5-70b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/llama3-chatqa-1.5-8b
+  upstream: nvidia/llama3-chatqa-1.5-8b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/mistral-nemo-minitron-8b-8k-instruct
+  upstream: nvidia/mistral-nemo-minitron-8b-8k-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/mistral-nemo-minitron-8b-base
+  upstream: nvidia/mistral-nemo-minitron-8b-base
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/nemotron-3-nano-30b-a3b
+  upstream: nvidia/nemotron-3-nano-30b-a3b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/nemotron-4-340b-instruct
+  upstream: nvidia/nemotron-4-340b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 4096
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/nemotron-4-340b-reward
+  upstream: nvidia/nemotron-4-340b-reward
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/nemotron-4-mini-hindi-4b-instruct
+  upstream: nvidia/nemotron-4-mini-hindi-4b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/nemotron-content-safety-reasoning-4b
+  upstream: nvidia/nemotron-content-safety-reasoning-4b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/nemotron-mini-4b-instruct
+  upstream: nvidia/nemotron-mini-4b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/nemotron-nano-12b-v2-vl
+  upstream: nvidia/nemotron-nano-12b-v2-vl
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: nvidia/nemotron-nano-3-30b-a3b
+  upstream: nvidia/nemotron-nano-3-30b-a3b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/neva-22b
+  upstream: nvidia/neva-22b
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: nvidia/nvidia-nemotron-nano-9b-v2
+  upstream: nvidia/nvidia-nemotron-nano-9b-v2
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/riva-translate-4b-instruct
+  upstream: nvidia/riva-translate-4b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/riva-translate-4b-instruct-v1.1
+  upstream: nvidia/riva-translate-4b-instruct-v1.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: nvidia/usdcode-llama-3.1-70b-instruct
+  upstream: nvidia/usdcode-llama-3.1-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nvidia/vila
+  upstream: nvidia/vila
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: openai/gpt-oss-120b
+  upstream: openai/gpt-oss-120b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: openai/gpt-oss-20b
+  upstream: openai/gpt-oss-20b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: opengpt-x/teuken-7b-instruct-commercial-v0.4
+  upstream: opengpt-x/teuken-7b-instruct-commercial-v0.4
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen2-7b-instruct
+  upstream: qwen/qwen2-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen2.5-7b-instruct
+  upstream: qwen/qwen2.5-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen2.5-coder-32b-instruct
+  upstream: qwen/qwen2.5-coder-32b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen2.5-coder-7b-instruct
+  upstream: qwen/qwen2.5-coder-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen3-235b-a22b
+  upstream: qwen/qwen3-235b-a22b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen3-coder-480b-a35b-instruct
+  upstream: qwen/qwen3-coder-480b-a35b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen3-next-80b-a3b-instruct
+  upstream: qwen/qwen3-next-80b-a3b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen3-next-80b-a3b-thinking
+  upstream: qwen/qwen3-next-80b-a3b-thinking
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: qwen/qwen3.5-397b-a17b
+  upstream: qwen/qwen3.5-397b-a17b
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: qwen/qwq-32b
+  upstream: qwen/qwq-32b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: rakuten/rakutenai-7b-chat
+  upstream: rakuten/rakutenai-7b-chat
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: rakuten/rakutenai-7b-instruct
+  upstream: rakuten/rakutenai-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: sarvamai/sarvam-m
+  upstream: sarvamai/sarvam-m
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: speakleash/bielik-11b-v2.3-instruct
+  upstream: speakleash/bielik-11b-v2.3-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: speakleash/bielik-11b-v2.6-instruct
+  upstream: speakleash/bielik-11b-v2.6-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: stepfun-ai/step-3.5-flash
+  upstream: stepfun-ai/step-3.5-flash
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: stockmark/stockmark-2-100b-instruct
+  upstream: stockmark/stockmark-2-100b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: thudm/chatglm3-6b
+  upstream: thudm/chatglm3-6b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: tiiuae/falcon3-7b-instruct
+  upstream: tiiuae/falcon3-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: tokyotech-llm/llama-3-swallow-70b-instruct-v0.1
+  upstream: tokyotech-llm/llama-3-swallow-70b-instruct-v0.1
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: upstage/solar-10.7b-instruct
+  upstream: upstage/solar-10.7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: utter-project/eurollm-9b-instruct
+  upstream: utter-project/eurollm-9b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: writer/palmyra-creative-122b
+  upstream: writer/palmyra-creative-122b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: writer/palmyra-fin-70b-32k
+  upstream: writer/palmyra-fin-70b-32k
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: writer/palmyra-med-70b
+  upstream: writer/palmyra-med-70b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: writer/palmyra-med-70b-32k
+  upstream: writer/palmyra-med-70b-32k
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: yentinglin/llama-3-taiwan-70b-instruct
+  upstream: yentinglin/llama-3-taiwan-70b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: z-ai/glm4.7
+  upstream: z-ai/glm4.7
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: z-ai/glm5
+  upstream: z-ai/glm5
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: zyphra/zamba2-7b-instruct
+  upstream: zyphra/zamba2-7b-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+status: active
+env: NVIDIA_NIM_API_KEY
+tags:
+- free
+- nvidia

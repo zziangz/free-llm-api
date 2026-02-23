@@ -1,0 +1,457 @@
+$id: "ollama-cloud"
+name: "Ollama Cloud"
+description: "Run large open-source models in the cloud via Ollama's hosted infrastructure"
+url: "https://ollama.com"
+docs: "https://docs.ollama.com/cloud"
+
+auth:
+  type: "bearer"
+  keyLabel: "Ollama API Key"
+  keyUrl: "https://ollama.com/settings/keys"
+
+# Ollama-native protocol (similar to OpenAI but with differences)
+endpoint:
+  baseUrl: "https://ollama.com/api"
+  protocol: "ollama"
+
+limits:
+  requests:
+    perMinute: 60
+  tokens:
+    perMinute: 100000
+
+models:
+  - id: "cogito-2.1:671b"
+    upstream: "cogito-2.1:671b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+      thinking: true
+
+  - id: "deepseek-v3.1:671b"
+    upstream: "deepseek-v3.1:671b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "deepseek-v3.2"
+    upstream: "deepseek-v3.2"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "devstral-2:123b"
+    upstream: "devstral-2:123b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    tags:
+      - code
+
+  - id: "devstral-small-2:24b"
+    upstream: "devstral-small-2:24b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    tags:
+      - code
+
+  - id: "gemini-3-flash-preview"
+    upstream: "gemini-3-flash-preview"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 1048576
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "gemma3:12b"
+    upstream: "gemma3:12b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "gemma3:27b"
+    upstream: "gemma3:27b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "gemma3:4b"
+    upstream: "gemma3:4b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "glm-4.6"
+    upstream: "glm-4.6"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "glm-4.7"
+    upstream: "glm-4.7"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "glm-5"
+    upstream: "glm-5"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "gpt-oss:120b"
+    upstream: "gpt-oss:120b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "gpt-oss:20b"
+    upstream: "gpt-oss:20b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "kimi-k2-thinking"
+    upstream: "kimi-k2-thinking"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+      thinking: true
+
+  - id: "kimi-k2.5"
+    upstream: "kimi-k2.5"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "kimi-k2:1t"
+    upstream: "kimi-k2:1t"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "minimax-m2"
+    upstream: "minimax-m2"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 1048576
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "minimax-m2.1"
+    upstream: "minimax-m2.1"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 1048576
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "minimax-m2.5"
+    upstream: "minimax-m2.5"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 1048576
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "ministral-3:14b"
+    upstream: "ministral-3:14b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "ministral-3:3b"
+    upstream: "ministral-3:3b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "ministral-3:8b"
+    upstream: "ministral-3:8b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "mistral-large-3:675b"
+    upstream: "mistral-large-3:675b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "nemotron-3-nano:30b"
+    upstream: "nemotron-3-nano:30b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+  - id: "qwen3-coder-next"
+    upstream: "qwen3-coder-next"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    tags:
+      - code
+
+  - id: "qwen3-coder:480b"
+    upstream: "qwen3-coder:480b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    tags:
+      - code
+
+  - id: "qwen3-next:80b"
+    upstream: "qwen3-next:80b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "qwen3-vl:235b"
+    upstream: "qwen3-vl:235b"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: true
+
+  - id: "qwen3-vl:235b-instruct"
+    upstream: "qwen3-vl:235b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: true
+
+  - id: "qwen3.5:397b"
+    upstream: "qwen3.5:397b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "rnj-1:8b"
+    upstream: "rnj-1:8b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 8192
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+
+status: "active"
+env: "OLLAMA_API_KEY"
+tags:
+  - free
+  - open-source
+  - cloud

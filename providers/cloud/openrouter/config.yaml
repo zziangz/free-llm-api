@@ -1,0 +1,343 @@
+$id: openrouter
+name: OpenRouter
+description: Model aggregator with access to 300+ AI models, including free tier options
+url: https://openrouter.ai
+docs: https://openrouter.ai/docs
+auth:
+  type: bearer
+  keyLabel: OpenRouter API Key
+  keyUrl: https://openrouter.ai/settings/keys
+  keyPrefix: sk-or-v1-
+endpoint:
+  baseUrl: https://openrouter.ai/api/v1
+  protocol: openai
+limits:
+  requests:
+    perMinute: 20
+    perDay: 50
+models:
+# Ordered by LiveBench: DeepSeek R1 (reasoning) > GPT OSS 120B (46.09) > Qwen3 models > Llama > Trinity Large (32.74 - low)
+- id: deepseek-deepseek-r1-0528
+  upstream: deepseek/deepseek-r1-0528:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 163840
+  maxOutputTokens: 163840
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: openai-gpt-oss-120b
+  upstream: openai/gpt-oss-120b:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 131072
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: qwen-qwen3-coder
+  upstream: qwen/qwen3-coder:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262000
+  maxOutputTokens: 262000
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: qwen-qwen3-next-80b-a3b-instruct
+  upstream: qwen/qwen3-next-80b-a3b-instruct:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: nousresearch-hermes-3-llama-3.1-405b
+  upstream: nousresearch/hermes-3-llama-3.1-405b:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: meta-llama-llama-3.3-70b-instruct
+  upstream: meta-llama/llama-3.3-70b-instruct:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 128000
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: nvidia-nemotron-3-nano-30b-a3b
+  upstream: nvidia/nemotron-3-nano-30b-a3b:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: google-gemma-3-27b-it
+  upstream: google/gemma-3-27b-it:free
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistralai-mistral-small-3.1-24b-instruct
+  upstream: mistralai/mistral-small-3.1-24b-instruct:free
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: cognitivecomputations-dolphin-mistral-24b-venice-edition
+  upstream: cognitivecomputations/dolphin-mistral-24b-venice-edition:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: true
+- id: openai-gpt-oss-20b
+  upstream: openai/gpt-oss-20b:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 131072
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: arcee-ai-trinity-large-preview
+  upstream: arcee-ai/trinity-large-preview:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google-gemma-3-12b-it
+  upstream: google/gemma-3-12b-it:free
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: false
+- id: nvidia-nemotron-nano-12b-v2-vl
+  upstream: nvidia/nemotron-nano-12b-v2-vl:free
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  - video-to-text
+  contextWindow: 128000
+  maxOutputTokens: 128000
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: false
+- id: nvidia-nemotron-nano-9b-v2
+  upstream: nvidia/nemotron-nano-9b-v2:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google-gemma-3-4b-it
+  upstream: google/gemma-3-4b-it:free
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: true
+    json: true
+- id: qwen-qwen3-4b
+  upstream: qwen/qwen3-4b:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 40960
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: google-gemma-3n-e4b-it
+  upstream: google/gemma-3n-e4b-it:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 2048
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: true
+- id: meta-llama-llama-3.2-3b-instruct
+  upstream: meta-llama/llama-3.2-3b-instruct:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: google-gemma-3n-e2b-it
+  upstream: google/gemma-3n-e2b-it:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 8192
+  maxOutputTokens: 2048
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: true
+- id: arcee-ai-trinity-mini
+  upstream: arcee-ai/trinity-mini:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: liquid-lfm-2.5-1.2b-instruct
+  upstream: liquid/lfm-2.5-1.2b-instruct:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: liquid-lfm-2.5-1.2b-thinking
+  upstream: liquid/lfm-2.5-1.2b-thinking:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: upstage-solar-pro-3
+  upstream: upstage/solar-pro-3:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: stepfun-step-3.5-flash
+  upstream: stepfun/step-3.5-flash:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 256000
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: z-ai-glm-4.5-air
+  upstream: z-ai/glm-4.5-air:free
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 96000
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+status: active
+env: OPENROUTER_API_KEY
+tags:
+- free
+- aggregator
+- openai-compatible

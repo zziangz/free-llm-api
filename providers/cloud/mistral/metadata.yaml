@@ -1,0 +1,182 @@
+# Mistral AI Model Metadata
+# Curated from https://docs.mistral.ai/getting-started/models/models_overview/
+# Last updated: 2026-02-22
+#
+# This file contains curated metadata for Mistral AI models
+# that cannot be auto-detected from the API
+
+# Vision/Multimodal models (API auto-detects, this is for reference)
+# Note: Most models now have vision capability from API
+vision_models:
+  - "pixtral-12b-latest"
+  - "pixtral-12b-2409"
+  - "pixtral-large-latest"
+  - "pixtral-large-2411"
+  - "mistral-small-latest"
+  - "mistral-small-2506"
+  - "mistral-medium-latest"
+  - "mistral-medium-2505"
+  - "mistral-medium-2508"
+  - "mistral-large-latest"
+  - "mistral-large-2512"
+  - "magistral-medium-latest"
+  - "magistral-small-latest"
+  - "ministral-3b-latest"
+  - "ministral-8b-latest"
+  - "ministral-14b-latest"
+  - "devstral-small-latest"
+  - "mistral-ocr-latest"
+
+# Models that support function/tool calling (API auto-detects)
+function_calling_models:
+  - "mistral-small-latest"
+  - "mistral-small-2501"
+  - "mistral-small-2506"
+  - "mistral-medium-latest"
+  - "mistral-medium-2505"
+  - "mistral-medium-2508"
+  - "mistral-large-latest"
+  - "mistral-large-2411"
+  - "mistral-large-2512"
+  - "ministral-3b-latest"
+  - "ministral-8b-latest"
+  - "ministral-14b-latest"
+  - "codestral-latest"
+  - "codestral-2508"
+  - "devstral-latest"
+  - "devstral-small-latest"
+  - "devstral-medium-latest"
+  - "pixtral-large-latest"
+  - "pixtral-large-2411"
+  - "magistral-medium-latest"
+  - "magistral-small-latest"
+  - "voxtral-small-latest"
+
+# Models that support Fill-in-the-Middle (FIM) code completion
+fim_models:
+  - "codestral-latest"
+  - "codestral-2501"
+  - "codestral-2508"
+  - "codestral-2405"
+
+# Context window sizes (tokens) - API provides max_context_length, these are fallbacks
+context_windows:
+  # Premier/Medium models (131K)
+  "mistral-large-latest": 131072
+  "mistral-large-2411": 131072
+  "mistral-large-2512": 131072
+  "mistral-medium-latest": 131072
+  "mistral-medium-2505": 131072
+  "mistral-medium-2508": 131072
+  
+  # Small models (32K)
+  "mistral-small-latest": 32768
+  "mistral-small-2501": 32768
+  "mistral-small-2506": 32768
+  
+  # Ministral (edge/mobile - 131K)
+  "ministral-3b-latest": 131072
+  "ministral-8b-latest": 131072
+  "ministral-14b-latest": 131072
+  
+  # Code models (32K)
+  "codestral-latest": 32768
+  "codestral-2501": 32768
+  "codestral-2508": 32768
+  
+  # Developer models
+  "devstral-latest": 131072
+  "devstral-small-latest": 131072
+  "devstral-medium-latest": 131072
+  
+  # Magistral (reasoning)
+  "magistral-medium-latest": 131072
+  "magistral-small-latest": 131072
+  
+  # Vision models
+  "pixtral-12b-latest": 131072
+  "pixtral-large-latest": 131072
+  
+  # Audio models
+  "voxtral-small-latest": 131072
+  
+  # OCR models
+  "mistral-ocr-latest": 131072
+  
+  # Embedding models
+  "mistral-embed": 8192
+
+# Free tier models (available on free plan with rate limits)
+# Check https://console.mistral.ai for current free tier
+free_models:
+  - "mistral-small-latest"
+  - "mistral-medium-latest"
+  - "mistral-large-latest"
+  - "codestral-latest"
+  - "pixtral-12b-latest"
+  - "pixtral-large-latest"
+  - "ministral-3b-latest"
+  - "ministral-8b-latest"
+  - "ministral-14b-latest"
+  - "devstral-small-latest"
+  - "magistral-small-latest"
+  - "magistral-medium-latest"
+  - "mistral-embed"
+  - "mistral-moderation-latest"
+
+# Models with JSON mode support (generally same as function_calling)
+json_mode_models:
+  - "mistral-small-latest"
+  - "mistral-medium-latest"
+  - "mistral-large-latest"
+  - "ministral-3b-latest"
+  - "ministral-8b-latest"
+  - "ministral-14b-latest"
+  - "codestral-latest"
+  - "devstral-latest"
+  - "pixtral-large-latest"
+  - "magistral-small-latest"
+  - "magistral-medium-latest"
+
+# Max output tokens (defaults to 8192 if not specified)
+max_output_tokens:
+  default: 8192
+  "mistral-large-latest": 16384
+  "mistral-large-2512": 16384
+  "mistral-medium-latest": 16384
+  "pixtral-large-latest": 16384
+  "devstral-medium-latest": 16384
+
+# Model aliases (latest -> specific version)
+aliases:
+  "mistral-large-latest": "mistral-large-2411"
+  "mistral-small-latest": "mistral-small-2501"
+  "codestral-latest": "codestral-2501"
+  "pixtral-12b-latest": "pixtral-12b-2409"
+  "pixtral-large-latest": "pixtral-large-2411"
+  "ministral-3b-latest": "ministral-3b-2410"
+  "ministral-8b-latest": "ministral-8b-2410"
+
+# Deprecated models (exclude from config)
+deprecated_models:
+  - "mistral-tiny"
+  - "mistral-tiny-2312"
+  - "mistral-medium"
+  - "mistral-medium-2312"
+  - "open-mistral-7b"
+  - "open-mixtral-8x7b"
+  - "open-mixtral-8x22b"
+
+# Embedding models (different endpoint)
+embedding_models:
+  - "mistral-embed"
+
+# Moderation models (different endpoint)  
+moderation_models:
+  - "mistral-moderation-latest"
+  - "mistral-moderation-2411"
+
+# Default values
+defaults:
+  contextWindow: 32768
+  maxOutputTokens: 8192

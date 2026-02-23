@@ -1,0 +1,2148 @@
+$id: "huggingface"
+name: "HuggingFace Inference Router"
+description: "Unified gateway to 15+ inference providers through HuggingFace Hub"
+url: "https://huggingface.co"
+docs: "https://huggingface.co/docs/api-inference/index"
+
+auth:
+  type: "bearer"
+  keyLabel: "HuggingFace Token"
+  keyUrl: "https://huggingface.co/settings/tokens"
+
+# HuggingFace Router is OpenAI-compatible
+endpoint:
+  baseUrl: "https://router.huggingface.co/v1"
+  protocol: "openai"
+
+# Free tier is very limited - $0.10/month
+# Consider using dedicated free providers (Cerebras, Groq, etc.)
+limits:
+  credits:
+    monthly: 0.1
+    description: "Free tier: $0.10/month credits, then pay-as-you-go"
+
+# Available inference providers through this router
+providers:
+  - cerebras
+  - cohere
+  - featherless-ai
+  - fireworks-ai
+  - groq
+  - hf-inference
+  - hyperbolic
+  - novita
+  - nscale
+  - ovhcloud
+  - publicai
+  - sambanova
+  - scaleway
+  - together
+  - zai-org
+
+models:
+  - id: "CohereLabs/aya-expanse-32b"
+    upstream: "CohereLabs/aya-expanse-32b"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - cohere
+
+  - id: "CohereLabs/aya-vision-32b"
+    upstream: "CohereLabs/aya-vision-32b"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - cohere
+
+  - id: "CohereLabs/c4ai-command-a-03-2025"
+    upstream: "CohereLabs/c4ai-command-a-03-2025"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - cohere
+
+  - id: "CohereLabs/c4ai-command-r-08-2024"
+    upstream: "CohereLabs/c4ai-command-r-08-2024"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - cohere
+
+  - id: "CohereLabs/c4ai-command-r7b-12-2024"
+    upstream: "CohereLabs/c4ai-command-r7b-12-2024"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - cohere
+
+  - id: "CohereLabs/c4ai-command-r7b-arabic-02-2025"
+    upstream: "CohereLabs/c4ai-command-r7b-arabic-02-2025"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - cohere
+
+  - id: "CohereLabs/command-a-reasoning-08-2025"
+    upstream: "CohereLabs/command-a-reasoning-08-2025"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - cohere
+
+  - id: "CohereLabs/command-a-translate-08-2025"
+    upstream: "CohereLabs/command-a-translate-08-2025"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - cohere
+
+  - id: "EssentialAI/rnj-1-instruct"
+    upstream: "EssentialAI/rnj-1-instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "HuggingFaceTB/SmolLM3-3B"
+    upstream: "HuggingFaceTB/SmolLM3-3B"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - hf-inference
+    freeVia:
+      - hf-inference
+
+  - id: "MiniMaxAI/MiniMax-M1-80k"
+    upstream: "MiniMaxAI/MiniMax-M1-80k"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 1000000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "MiniMaxAI/MiniMax-M2"
+    upstream: "MiniMaxAI/MiniMax-M2"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 204800
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+
+  - id: "MiniMaxAI/MiniMax-M2.1"
+    upstream: "MiniMaxAI/MiniMax-M2.1"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 204800
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "MiniMaxAI/MiniMax-M2.5"
+    upstream: "MiniMaxAI/MiniMax-M2.5"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 204800
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "NousResearch/Hermes-2-Pro-Llama-3-8B"
+    upstream: "NousResearch/Hermes-2-Pro-Llama-3-8B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+
+  - id: "Qwen/QwQ-32B"
+    upstream: "Qwen/QwQ-32B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "Qwen/Qwen2.5-72B-Instruct"
+    upstream: "Qwen/Qwen2.5-72B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "Qwen/Qwen2.5-7B-Instruct"
+    upstream: "Qwen/Qwen2.5-7B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+      - featherless-ai
+
+  - id: "Qwen/Qwen2.5-Coder-32B-Instruct"
+    upstream: "Qwen/Qwen2.5-Coder-32B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+      - scaleway
+
+  - id: "Qwen/Qwen2.5-Coder-3B-Instruct"
+    upstream: "Qwen/Qwen2.5-Coder-3B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - nscale
+
+  - id: "Qwen/Qwen2.5-Coder-7B-Instruct"
+    upstream: "Qwen/Qwen2.5-Coder-7B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "Qwen/Qwen2.5-VL-32B-Instruct"
+    upstream: "Qwen/Qwen2.5-VL-32B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 128000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - fireworks-ai
+
+  - id: "Qwen/Qwen2.5-VL-72B-Instruct"
+    upstream: "Qwen/Qwen2.5-VL-72B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - hyperbolic
+      - ovhcloud
+    freeVia:
+      - hyperbolic
+
+  - id: "Qwen/Qwen2.5-VL-7B-Instruct"
+    upstream: "Qwen/Qwen2.5-VL-7B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - hyperbolic
+    freeVia:
+      - hyperbolic
+
+  - id: "Qwen/Qwen3-14B"
+    upstream: "Qwen/Qwen3-14B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 40960
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "Qwen/Qwen3-235B-A22B"
+    upstream: "Qwen/Qwen3-235B-A22B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+
+  - id: "Qwen/Qwen3-235B-A22B-Instruct-2507"
+    upstream: "Qwen/Qwen3-235B-A22B-Instruct-2507"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - nscale
+      - hyperbolic
+      - together
+      - fireworks-ai
+      - scaleway
+    freeVia:
+      - hyperbolic
+
+  - id: "Qwen/Qwen3-235B-A22B-Thinking-2507"
+    upstream: "Qwen/Qwen3-235B-A22B-Thinking-2507"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - cerebras
+      - fireworks-ai
+    freeVia:
+      - cerebras
+
+  - id: "Qwen/Qwen3-30B-A3B"
+    upstream: "Qwen/Qwen3-30B-A3B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 40960
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-32B"
+    upstream: "Qwen/Qwen3-32B"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+      - novita
+      - sambanova
+      - nscale
+      - featherless-ai
+      - ovhcloud
+    freeVia:
+      - groq
+      - sambanova
+
+  - id: "Qwen/Qwen3-4B-Instruct-2507"
+    upstream: "Qwen/Qwen3-4B-Instruct-2507"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+
+  - id: "Qwen/Qwen3-4B-Thinking-2507"
+    upstream: "Qwen/Qwen3-4B-Thinking-2507"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+
+  - id: "Qwen/Qwen3-8B"
+    upstream: "Qwen/Qwen3-8B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 40960
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "Qwen/Qwen3-Coder-30B-A3B-Instruct"
+    upstream: "Qwen/Qwen3-Coder-30B-A3B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - scaleway
+      - ovhcloud
+
+  - id: "Qwen/Qwen3-Coder-480B-A35B-Instruct"
+    upstream: "Qwen/Qwen3-Coder-480B-A35B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - cerebras
+      - hyperbolic
+      - together
+    freeVia:
+      - cerebras
+      - hyperbolic
+
+  - id: "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8"
+    upstream: "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "Qwen/Qwen3-Coder-Next"
+    upstream: "Qwen/Qwen3-Coder-Next"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-Coder-Next-FP8"
+    upstream: "Qwen/Qwen3-Coder-Next-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "Qwen/Qwen3-Next-80B-A3B-Instruct"
+    upstream: "Qwen/Qwen3-Next-80B-A3B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - hyperbolic
+      - together
+    freeVia:
+      - hyperbolic
+
+  - id: "Qwen/Qwen3-Next-80B-A3B-Thinking"
+    upstream: "Qwen/Qwen3-Next-80B-A3B-Thinking"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - hyperbolic
+    freeVia:
+      - hyperbolic
+
+  - id: "Qwen/Qwen3-VL-235B-A22B-Instruct"
+    upstream: "Qwen/Qwen3-VL-235B-A22B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-VL-235B-A22B-Thinking"
+    upstream: "Qwen/Qwen3-VL-235B-A22B-Thinking"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    upstream: "Qwen/Qwen3-VL-30B-A3B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-VL-30B-A3B-Thinking"
+    upstream: "Qwen/Qwen3-VL-30B-A3B-Thinking"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+
+  - id: "Qwen/Qwen3-VL-32B-Instruct"
+    upstream: "Qwen/Qwen3-VL-32B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - together
+
+  - id: "Qwen/Qwen3-VL-8B-Instruct"
+    upstream: "Qwen/Qwen3-VL-8B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+      - together
+
+  - id: "Qwen/Qwen3.5-397B-A17B"
+    upstream: "Qwen/Qwen3.5-397B-A17B"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+      - together
+      - featherless-ai
+
+  - id: "Sao10K/L3-70B-Euryale-v2.1"
+    upstream: "Sao10K/L3-70B-Euryale-v2.1"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "Sao10K/L3-8B-Lunaris-v1"
+    upstream: "Sao10K/L3-8B-Lunaris-v1"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "Sao10K/L3-8B-Stheno-v3.2"
+    upstream: "Sao10K/L3-8B-Stheno-v3.2"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "ServiceNow-AI/Apriel-1.6-15b-Thinker"
+    upstream: "ServiceNow-AI/Apriel-1.6-15b-Thinker"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - together
+
+  - id: "XiaomiMiMo/MiMo-V2-Flash"
+    upstream: "XiaomiMiMo/MiMo-V2-Flash"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "aisingapore/Gemma-SEA-LION-v4-27B-IT"
+    upstream: "aisingapore/Gemma-SEA-LION-v4-27B-IT"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "aisingapore/Qwen-SEA-LION-v4-32B-IT"
+    upstream: "aisingapore/Qwen-SEA-LION-v4-32B-IT"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - featherless-ai
+      - publicai
+
+  - id: "allenai/Molmo2-8B"
+    upstream: "allenai/Molmo2-8B"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: true
+    providers:
+      - publicai
+
+  - id: "allenai/Olmo-3-7B-Instruct"
+    upstream: "allenai/Olmo-3-7B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "allenai/Olmo-3-7B-Think"
+    upstream: "allenai/Olmo-3-7B-Think"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - publicai
+
+  - id: "allenai/Olmo-3.1-32B-Instruct"
+    upstream: "allenai/Olmo-3.1-32B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "allenai/Olmo-3.1-32B-Think"
+    upstream: "allenai/Olmo-3.1-32B-Think"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - publicai
+
+  - id: "alpindale/WizardLM-2-8x22B"
+    upstream: "alpindale/WizardLM-2-8x22B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 65535
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "arcee-ai/Trinity-Mini"
+    upstream: "arcee-ai/Trinity-Mini"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "baidu/ERNIE-4.5-21B-A3B-PT"
+    upstream: "baidu/ERNIE-4.5-21B-A3B-PT"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 120000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+
+  - id: "baidu/ERNIE-4.5-300B-A47B-Base-PT"
+    upstream: "baidu/ERNIE-4.5-300B-A47B-Base-PT"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 123000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "baidu/ERNIE-4.5-VL-28B-A3B-PT"
+    upstream: "baidu/ERNIE-4.5-VL-28B-A3B-PT"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 30000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+
+  - id: "baidu/ERNIE-4.5-VL-424B-A47B-Base-PT"
+    upstream: "baidu/ERNIE-4.5-VL-424B-A47B-Base-PT"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 123000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+
+  - id: "deepcogito/cogito-671b-v2.1"
+    upstream: "deepcogito/cogito-671b-v2.1"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 163840
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - together
+      - fireworks-ai
+
+  - id: "deepcogito/cogito-671b-v2.1-FP8"
+    upstream: "deepcogito/cogito-671b-v2.1-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 163840
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "deepseek-ai/DeepSeek-Prover-V2-671B"
+    upstream: "deepseek-ai/DeepSeek-Prover-V2-671B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 160000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+
+  - id: "deepseek-ai/DeepSeek-R1"
+    upstream: "deepseek-ai/DeepSeek-R1"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - sambanova
+      - hyperbolic
+      - together
+    freeVia:
+      - sambanova
+      - hyperbolic
+
+  - id: "deepseek-ai/DeepSeek-R1-0528"
+    upstream: "deepseek-ai/DeepSeek-R1-0528"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - sambanova
+      - hyperbolic
+      - together
+    freeVia:
+      - sambanova
+      - hyperbolic
+
+  - id: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+    upstream: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - sambanova
+      - nscale
+      - scaleway
+      - ovhcloud
+    freeVia:
+      - sambanova
+
+  - id: "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+    upstream: "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    upstream: "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"
+    upstream: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - nscale
+
+  - id: "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    upstream: "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - nscale
+      - featherless-ai
+
+  - id: "deepseek-ai/DeepSeek-V3"
+    upstream: "deepseek-ai/DeepSeek-V3"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 64000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - together
+
+  - id: "deepseek-ai/DeepSeek-V3-0324"
+    upstream: "deepseek-ai/DeepSeek-V3-0324"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - sambanova
+      - hyperbolic
+      - together
+    freeVia:
+      - sambanova
+      - hyperbolic
+
+  - id: "deepseek-ai/DeepSeek-V3.1"
+    upstream: "deepseek-ai/DeepSeek-V3.1"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - together
+      - fireworks-ai
+
+  - id: "deepseek-ai/DeepSeek-V3.1-Terminus"
+    upstream: "deepseek-ai/DeepSeek-V3.1-Terminus"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "deepseek-ai/DeepSeek-V3.2"
+    upstream: "deepseek-ai/DeepSeek-V3.2"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 163840
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - fireworks-ai
+
+  - id: "deepseek-ai/DeepSeek-V3.2-Exp"
+    upstream: "deepseek-ai/DeepSeek-V3.2-Exp"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 163840
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+
+  - id: "dicta-il/DictaLM-3.0-24B-Thinking"
+    upstream: "dicta-il/DictaLM-3.0-24B-Thinking"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "google/gemma-3-27b-it"
+    upstream: "google/gemma-3-27b-it"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - featherless-ai
+      - scaleway
+
+  - id: "google/gemma-3n-E4B-it"
+    upstream: "google/gemma-3n-E4B-it"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: true
+    providers:
+      - together
+
+  - id: "katanemo/Arch-Router-1.5B"
+    upstream: "katanemo/Arch-Router-1.5B"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - hf-inference
+    freeVia:
+      - hf-inference
+
+  - id: "marin-community/marin-8b-instruct"
+    upstream: "marin-community/marin-8b-instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 4096
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - together
+      - featherless-ai
+
+  - id: "meta-llama/Llama-3.1-70B-Instruct"
+    upstream: "meta-llama/Llama-3.1-70B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - scaleway
+
+  - id: "meta-llama/Llama-3.1-8B-Instruct"
+    upstream: "meta-llama/Llama-3.1-8B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - cerebras
+      - sambanova
+      - nscale
+      - featherless-ai
+      - scaleway
+      - ovhcloud
+    freeVia:
+      - cerebras
+      - sambanova
+
+  - id: "meta-llama/Llama-3.2-1B-Instruct"
+    upstream: "meta-llama/Llama-3.2-1B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+
+  - id: "meta-llama/Llama-3.2-3B-Instruct"
+    upstream: "meta-llama/Llama-3.2-3B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - hyperbolic
+      - together
+    freeVia:
+      - hyperbolic
+
+  - id: "meta-llama/Llama-3.3-70B-Instruct"
+    upstream: "meta-llama/Llama-3.3-70B-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+      - novita
+      - sambanova
+      - nscale
+      - hyperbolic
+      - together
+      - fireworks-ai
+      - scaleway
+      - ovhcloud
+    freeVia:
+      - groq
+      - sambanova
+      - hyperbolic
+
+  - id: "meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+    upstream: "meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - groq
+      - sambanova
+    freeVia:
+      - groq
+      - sambanova
+
+  - id: "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+    upstream: "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 1048576
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+      - together
+
+  - id: "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    upstream: "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - groq
+      - novita
+      - nscale
+    freeVia:
+      - groq
+
+  - id: "meta-llama/Llama-Guard-4-12B"
+    upstream: "meta-llama/Llama-Guard-4-12B"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - groq
+    freeVia:
+      - groq
+
+  - id: "meta-llama/Meta-Llama-3-70B-Instruct"
+    upstream: "meta-llama/Meta-Llama-3-70B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "meta-llama/Meta-Llama-3-8B-Instruct"
+    upstream: "meta-llama/Meta-Llama-3-8B-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "mistralai/Mistral-7B-Instruct-v0.2"
+    upstream: "mistralai/Mistral-7B-Instruct-v0.2"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - together
+      - featherless-ai
+
+  - id: "moonshotai/Kimi-K2-Instruct"
+    upstream: "moonshotai/Kimi-K2-Instruct"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - together
+      - featherless-ai
+
+  - id: "moonshotai/Kimi-K2-Instruct-0905"
+    upstream: "moonshotai/Kimi-K2-Instruct-0905"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+      - novita
+      - together
+    freeVia:
+      - groq
+
+  - id: "moonshotai/Kimi-K2-Thinking"
+    upstream: "moonshotai/Kimi-K2-Thinking"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - together
+      - featherless-ai
+
+  - id: "moonshotai/Kimi-K2.5"
+    upstream: "moonshotai/Kimi-K2.5"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 262144
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+      - together
+      - fireworks-ai
+
+  - id: "nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+    upstream: "nvidia/NVIDIA-Nemotron-Nano-9B-v2"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "openai/gpt-oss-120b"
+    upstream: "openai/gpt-oss-120b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+      - novita
+      - cerebras
+      - sambanova
+      - nscale
+      - hyperbolic
+      - together
+      - fireworks-ai
+      - scaleway
+      - ovhcloud
+    freeVia:
+      - groq
+      - cerebras
+      - sambanova
+      - hyperbolic
+
+  - id: "openai/gpt-oss-20b"
+    upstream: "openai/gpt-oss-20b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+      - novita
+      - nscale
+      - hyperbolic
+      - together
+      - fireworks-ai
+      - ovhcloud
+    freeVia:
+      - groq
+      - hyperbolic
+
+  - id: "openai/gpt-oss-safeguard-20b"
+    upstream: "openai/gpt-oss-safeguard-20b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - groq
+    freeVia:
+      - groq
+
+  - id: "swiss-ai/Apertus-70B-Instruct-2509"
+    upstream: "swiss-ai/Apertus-70B-Instruct-2509"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "swiss-ai/Apertus-8B-Instruct-2509"
+    upstream: "swiss-ai/Apertus-8B-Instruct-2509"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - publicai
+
+  - id: "tokyotech-llm/Llama-3.3-Swallow-70B-Instruct-v0.4"
+    upstream: "tokyotech-llm/Llama-3.3-Swallow-70B-Instruct-v0.4"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: true
+    providers:
+      - sambanova
+    freeVia:
+      - sambanova
+
+  - id: "utter-project/EuroLLM-22B-Instruct-2512"
+    upstream: "utter-project/EuroLLM-22B-Instruct-2512"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - publicai
+
+  - id: "zai-org/AutoGLM-Phone-9B-Multilingual"
+    upstream: "zai-org/AutoGLM-Phone-9B-Multilingual"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 65536
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+
+  - id: "zai-org/GLM-4-32B-0414"
+    upstream: "zai-org/GLM-4-32B-0414"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    providers:
+      - novita
+      - featherless-ai
+
+  - id: "zai-org/GLM-4.5"
+    upstream: "zai-org/GLM-4.5"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-4.5-Air"
+    upstream: "zai-org/GLM-4.5-Air"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-4.5-Air-FP8"
+    upstream: "zai-org/GLM-4.5-Air-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "zai-org/GLM-4.5V"
+    upstream: "zai-org/GLM-4.5V"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 65536
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-4.5V-FP8"
+    upstream: "zai-org/GLM-4.5V-FP8"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - zai-org
+
+  - id: "zai-org/GLM-4.6"
+    upstream: "zai-org/GLM-4.6"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - cerebras
+      - together
+      - zai-org
+    freeVia:
+      - cerebras
+
+  - id: "zai-org/GLM-4.6-FP8"
+    upstream: "zai-org/GLM-4.6-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - zai-org
+
+  - id: "zai-org/GLM-4.6V"
+    upstream: "zai-org/GLM-4.6V"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-4.6V-FP8"
+    upstream: "zai-org/GLM-4.6V-FP8"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+    providers:
+      - zai-org
+
+  - id: "zai-org/GLM-4.6V-Flash"
+    upstream: "zai-org/GLM-4.6V-Flash"
+    free: false
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+    providers:
+      - novita
+
+  - id: "zai-org/GLM-4.7"
+    upstream: "zai-org/GLM-4.7"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 204800
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-4.7-FP8"
+    upstream: "zai-org/GLM-4.7-FP8"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 202752
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - together
+
+  - id: "zai-org/GLM-4.7-Flash"
+    upstream: "zai-org/GLM-4.7-Flash"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 200000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - zai-org
+
+  - id: "zai-org/GLM-5"
+    upstream: "zai-org/GLM-5"
+    free: false
+    modalities:
+      - text-to-text
+    contextWindow: 202800
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    providers:
+      - novita
+      - together
+      - zai-org
+
+status: "active"
+env: "HF_TOKEN"
+tags:
+  - aggregator
+  - openai-compatible
+  - multi-provider
+  - credit-limited

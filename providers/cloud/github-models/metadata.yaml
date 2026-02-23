@@ -1,0 +1,82 @@
+# GitHub Models Metadata
+# https://github.com/marketplace/models
+# Last updated: 2026-02-22
+#
+# GitHub Models provides free access to popular models through Azure AI
+
+# Vision-capable models
+vision_models:
+  - "gpt-4o"
+  - "gpt-4o-mini"
+
+# Function calling support
+function_calling_models:
+  - "gpt-4o"
+  - "gpt-4o-mini"
+  - "Meta-Llama-3.1-405B-Instruct"
+  - "Meta-Llama-3.1-70B-Instruct"
+  - "Meta-Llama-3.1-8B-Instruct"
+  - "Mistral-large-2407"
+
+# JSON mode support
+json_mode_models:
+  - "gpt-4o"
+  - "gpt-4o-mini"
+  - "Meta-Llama-3.1-405B-Instruct"
+  - "Meta-Llama-3.1-70B-Instruct"
+  - "Meta-Llama-3.1-8B-Instruct"
+
+# Context windows
+context_windows:
+  "gpt-4o": 128000
+  "gpt-4o-mini": 128000
+  "Meta-Llama-3-70B-Instruct": 8192
+  "Meta-Llama-3-8B-Instruct": 8192
+  "Meta-Llama-3.1-405B-Instruct": 131072
+  "Meta-Llama-3.1-70B-Instruct": 131072
+  "Meta-Llama-3.1-8B-Instruct": 131072
+  "Mistral-large-2407": 131072
+  "Mistral-Nemo": 131072
+  "AI21-Jamba-Instruct": 256000
+
+# Max output tokens
+max_output_tokens:
+  "gpt-4o": 16384
+  "gpt-4o-mini": 16384
+  "Meta-Llama-3.1-405B-Instruct": 8192
+  "Meta-Llama-3.1-70B-Instruct": 8192
+  "Meta-Llama-3.1-8B-Instruct": 8192
+  default: 8192
+
+# All models are free
+free_models:
+  - "gpt-4o"
+  - "gpt-4o-mini"
+  - "Meta-Llama-3-70B-Instruct"
+  - "Meta-Llama-3-8B-Instruct"
+  - "Meta-Llama-3.1-405B-Instruct"
+  - "Meta-Llama-3.1-70B-Instruct"
+  - "Meta-Llama-3.1-8B-Instruct"
+  - "Mistral-large-2407"
+  - "Mistral-Nemo"
+  - "AI21-Jamba-Instruct"
+
+# Embedding models (different task)
+embedding_models:
+  - "Cohere-embed-v3-english"
+  - "Cohere-embed-v3-multilingual"
+  - "text-embedding-3-large"
+  - "text-embedding-3-small"
+
+# Rate limits (per GitHub docs)
+limits:
+  requests:
+    perMinute: 60
+  tokens:
+    perDay: 100000
+  concurrent: 5
+
+# Default settings
+defaults:
+  contextWindow: 128000
+  maxOutputTokens: 8192

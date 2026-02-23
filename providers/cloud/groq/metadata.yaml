@@ -1,0 +1,84 @@
+# Groq Model Metadata
+# https://console.groq.com/docs/models
+# Last updated: 2026-02-22
+#
+# Groq provides ultra-fast inference with LPU (Language Processing Unit)
+
+# Models that support function/tool calling
+function_calling_models:
+  - "llama-3.3-70b-versatile"
+  - "llama-3.1-8b-instant"
+  - "meta-llama/llama-4-scout-17b-16e-instruct"
+  - "meta-llama/llama-4-maverick-17b-128e-instruct"
+  - "moonshotai/kimi-k2-instruct"
+  - "moonshotai/kimi-k2-instruct-0905"
+  - "qwen/qwen3-32b"
+  - "openai/gpt-oss-120b"
+  - "openai/gpt-oss-20b"
+  - "groq/compound"
+  - "groq/compound-mini"
+
+# Models that support JSON mode
+json_mode_models:
+  - "llama-3.3-70b-versatile"
+  - "llama-3.1-8b-instant"
+  - "meta-llama/llama-4-scout-17b-16e-instruct"
+  - "meta-llama/llama-4-maverick-17b-128e-instruct"
+  - "moonshotai/kimi-k2-instruct"
+  - "moonshotai/kimi-k2-instruct-0905"
+  - "qwen/qwen3-32b"
+  - "openai/gpt-oss-120b"
+  - "openai/gpt-oss-20b"
+
+# Audio transcription models (Whisper)
+audio_models:
+  - "whisper-large-v3"
+  - "whisper-large-v3-turbo"
+
+# Text-to-Speech models (Orpheus)
+tts_models:
+  - "canopylabs/orpheus-v1-english"
+  - "canopylabs/orpheus-arabic-saudi"
+
+# Guard/Safety models (classifiers, not chat)
+guard_models:
+  - "meta-llama/llama-prompt-guard-2-86m"
+  - "meta-llama/llama-prompt-guard-2-22m"
+  - "meta-llama/llama-guard-4-12b"
+  - "openai/gpt-oss-safeguard-20b"
+
+# Compound/Agentic models (multi-model routing)
+compound_models:
+  - "groq/compound"
+  - "groq/compound-mini"
+
+# Models with vision capability
+vision_models: []  # Groq doesn't have vision models yet
+
+# All models are free on Groq
+free_models:
+  - "llama-3.3-70b-versatile"
+  - "llama-3.1-8b-instant"
+  - "meta-llama/llama-4-scout-17b-16e-instruct"
+  - "meta-llama/llama-4-maverick-17b-128e-instruct"
+  - "moonshotai/kimi-k2-instruct"
+  - "moonshotai/kimi-k2-instruct-0905"
+  - "qwen/qwen3-32b"
+  - "openai/gpt-oss-120b"
+  - "openai/gpt-oss-20b"
+  - "groq/compound"
+  - "groq/compound-mini"
+
+# Rate limits (free tier)
+limits:
+  requests:
+    perMinute: 30
+    perDay: 14400
+  tokens:
+    perMinute: 18000
+    perDay: 1000000
+
+# Default settings
+defaults:
+  contextWindow: 131072
+  maxOutputTokens: 8192

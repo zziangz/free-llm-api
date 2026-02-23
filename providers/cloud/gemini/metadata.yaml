@@ -1,0 +1,83 @@
+# Google Gemini/AI Studio Model Metadata
+# https://ai.google.dev/docs
+# Last updated: 2026-02-22
+#
+# Only includes models with non-zero free tier quota
+# Gemini uses a custom protocol (not OpenAI-compatible)
+
+# Models with free tier quota (from rate limits page)
+# Gemini 2.5/3 Flash: 5 RPM, 250K TPM, 20 RPD
+# Gemini 2.5 Flash Lite: 10 RPM, 250K TPM, 20 RPD
+# Gemma models: 30 RPM, 15K TPM, 14.4K RPD
+# Gemini Robotics ER 1.5: 10 RPM, 250K TPM, 20 RPD
+
+# Vision-capable models
+vision_models:
+  - "gemini-2.5-flash"
+  - "gemini-2.5-flash-lite"
+  - "gemini-3-flash-preview"
+  - "gemini-robotics-er-1.5-preview"
+
+# Models with function calling
+function_calling_models:
+  - "gemini-2.5-flash"
+  - "gemini-2.5-flash-lite"
+  - "gemini-3-flash-preview"
+
+# Models with thinking/reasoning capability
+thinking_models:
+  - "gemini-2.5-flash"
+  - "gemini-3-flash-preview"
+
+# JSON mode support
+json_mode_models:
+  - "gemini-2.5-flash"
+  - "gemini-2.5-flash-lite"
+  - "gemini-3-flash-preview"
+
+# TTS models (3 RPM, 10K TPM, 10 RPD)
+tts_models:
+  - "gemini-2.5-flash-preview-tts"
+
+# Image generation models (25 RPD)
+image_gen_models:
+  - "imagen-4.0-generate-001"
+  - "imagen-4.0-ultra-generate-001"
+  - "imagen-4.0-fast-generate-001"
+
+# Embedding models (100 RPM, 30K TPM, 1K RPD)
+embedding_models:
+  - "gemini-embedding-001"
+
+# Gemma models (30 RPM, 15K TPM, 14.4K RPD)
+gemma_models:
+  - "gemma-3-1b-it"
+  - "gemma-3-2b-it"
+  - "gemma-3-4b-it"
+  - "gemma-3-12b-it"
+  - "gemma-3-27b-it"
+
+# Models with free quota (non-zero limits)
+free_models:
+  - "gemini-2.5-flash"
+  - "gemini-2.5-flash-lite"
+  - "gemini-3-flash-preview"
+  - "gemini-robotics-er-1.5-preview"
+  - "gemma-3-1b-it"
+  - "gemma-3-2b-it"
+  - "gemma-3-4b-it"
+  - "gemma-3-12b-it"
+  - "gemma-3-27b-it"
+
+# Rate limits (free tier - varies by model)
+limits:
+  requests:
+    perMinute: 5
+    perDay: 20
+  tokens:
+    perMinute: 250000
+
+# Default settings
+defaults:
+  contextWindow: 1048576
+  maxOutputTokens: 8192

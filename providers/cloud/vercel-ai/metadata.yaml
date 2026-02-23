@@ -1,0 +1,19 @@
+# Vercel AI Gateway Metadata
+# https://vercel.com/docs/ai-gateway
+# Last updated: 2026-02-22
+#
+# Vercel AI Gateway is a simple routing proxy
+# Limited free tier, mainly for Vercel deployments
+
+# The gateway auto-routes to best model
+# No specific model list - it's a proxy
+
+# Free tier limits
+limits:
+  requests:
+    perMonth: 5000
+
+# Default settings
+defaults:
+  contextWindow: 128000
+  maxOutputTokens: 4096

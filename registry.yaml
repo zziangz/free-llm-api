@@ -1,143 +1,126 @@
-version: "2.0"
-updated: "2026-02-19"
-description: "Freeway Tokenbank - Free API providers registry"
+version: "2.1"
+updated: "2026-02-22"
+description: "Free LLM API Providers Registry - Truly free providers with no payment required"
+
+# Inclusion criteria:
+# - No payment method required
+# - Recurring limits (auto-refill)
+# - API access available
+# - Currently active
 
 providers:
-  cloud:
-    - id: "github-models"
-      name: "GitHub Models"
-      free: true
-      rateLimited: true
-      models: 4
-      file: "providers/cloud/github-models.yaml"
+  - id: "cerebras"
+    name: "Cerebras"
+    free: true
+    rateLimited: true
+    models: 4
+    protocol: "openai"
+    file: "providers/cloud/cerebras/config.yaml"
 
-    - id: "google-ai-studio"
-      name: "Google AI Studio"
-      free: true
-      rateLimited: true
-      models: 3
-      file: "providers/cloud/google-ai-studio.yaml"
+  - id: "cloudflare"
+    name: "Cloudflare Workers AI"
+    free: true
+    rateLimited: true
+    models: 60
+    protocol: "cloudflare"
+    file: "providers/cloud/cloudflare/config.yaml"
 
-    - id: "openrouter"
-      name: "OpenRouter"
-      free: true
-      rateLimited: true
-      models: 4
-      file: "providers/cloud/openrouter.yaml"
+  - id: "gemini"
+    name: "Google AI Studio (Gemini)"
+    free: true
+    rateLimited: true
+    models: 8
+    protocol: "gemini"
+    file: "providers/cloud/gemini/config.yaml"
 
-    - id: "groq"
-      name: "Groq"
-      free: true
-      rateLimited: true
-      models: 3
-      file: "providers/cloud/groq.yaml"
+  - id: "github-models"
+    name: "GitHub Models"
+    free: true
+    rateLimited: true
+    models: 41
+    protocol: "openai"
+    file: "providers/cloud/github-models/config.yaml"
 
-    - id: "cerebras"
-      name: "Cerebras"
-      free: true
-      rateLimited: true
-      models: 2
-      file: "providers/cloud/cerebras.yaml"
+  - id: "groq"
+    name: "Groq"
+    free: true
+    rateLimited: true
+    models: 12
+    protocol: "openai"
+    file: "providers/cloud/groq/config.yaml"
 
-    - id: "together"
-      name: "Together AI"
-      free: true
-      rateLimited: true
-      models: 2
-      file: "providers/cloud/together.yaml"
+  - id: "huggingface"
+    name: "HuggingFace Inference API"
+    free: true
+    rateLimited: true
+    models: 25
+    protocol: "openai"
+    file: "providers/cloud/huggingface/config.yaml"
 
-    - id: "deepseek"
-      name: "DeepSeek"
-      free: true
-      rateLimited: true
-      models: 2
-      file: "providers/cloud/deepseek.yaml"
+  - id: "mistral"
+    name: "Mistral"
+    free: true
+    rateLimited: true
+    models: 8
+    protocol: "openai"
+    file: "providers/cloud/mistral/config.yaml"
 
-    - id: "mistral"
-      name: "Mistral"
-      free: true
-      rateLimited: true
-      models: 2
-      file: "providers/cloud/mistral.yaml"
+  - id: "nvidia-nim"
+    name: "NVIDIA NIM"
+    free: true
+    rateLimited: true
+    models: 120
+    protocol: "openai"
+    file: "providers/cloud/nvidia-nim/config.yaml"
 
-    - id: "nvidia-nim"
-      name: "NVIDIA NIM"
-      free: true
-      rateLimited: true
-      models: 1
-      file: "providers/cloud/nvidia-nim.yaml"
+  - id: "ollama-cloud"
+    name: "Ollama Cloud"
+    free: true
+    rateLimited: true
+    models: 32
+    protocol: "ollama"
+    file: "providers/cloud/ollama-cloud/config.yaml"
 
-    - id: "vercel-ai"
-      name: "Vercel AI Gateway"
-      free: true
-      rateLimited: true
-      models: 1
-      file: "providers/cloud/vercel-ai.yaml"
+  - id: "openrouter"
+    name: "OpenRouter"
+    free: true
+    rateLimited: true
+    models: 26
+    protocol: "openai"
+    file: "providers/cloud/openrouter/config.yaml"
 
-  credit-based:
-    - id: "hyperbolic"
-      name: "Hyperbolic"
-      free: false
-      credits: "$1"
-      models: 20
-      file: "providers/credit-based/hyperbolic.yaml"
+  - id: "vercel-ai"
+    name: "Vercel AI Gateway"
+    free: true
+    rateLimited: true
+    models: 1
+    protocol: "openai"
+    file: "providers/cloud/vercel-ai/config.yaml"
 
-    - id: "nebius"
-      name: "Nebius"
-      free: false
-      credits: "$1"
-      models: 10
-      file: "providers/credit-based/nebius.yaml"
-
-    - id: "sambanova"
-      name: "SambaNova Cloud"
-      free: false
-      credits: "$5 for 3 months"
-      models: 15
-      file: "providers/credit-based/sambanova.yaml"
-
-  local:
-    - id: "local-ollama"
-      name: "Ollama"
-      free: true
-      rateLimited: false
-      models: "dynamic"
-      file: "providers/local/ollama.yaml"
-
-    - id: "local-vllm"
-      name: "vLLM"
-      free: true
-      rateLimited: false
-      models: "dynamic"
-      file: "providers/local/vllm.yaml"
-
-    - id: "local-lm-studio"
-      name: "LM Studio"
-      free: true
-      rateLimited: false
-      models: "dynamic"
-      file: "providers/local/lm-studio.yaml"
+# Excluded providers (documented in providers/cloud/{name}/README.md):
+excluded:
+  - id: "coze"
+    reason: "Outdated model list"
+    file: "providers/cloud/coze/README.md"
+  
+  - id: "together"
+    reason: "Requires $5 minimum deposit"
+  
+  - id: "deepseek"
+    reason: "Temporarily unavailable - sign-ups paused"
 
 modalities:
   text-to-text:
     description: "Text input, text output"
     examples: ["GPT-4", "Llama", "Claude"]
   
-  text-image-to-text:
-    description: "Text and image input, text output"
-    examples: ["GPT-4o", "Gemini Pro Vision", "Claude 3"]
-  
   image-to-text:
-    description: "Image input, text output"
-    examples: ["BLIP", "LLaVA"]
+    description: "Image input, text output (vision)"
+    examples: ["GPT-4o", "Gemini Vision", "Llava"]
   
   text-to-image:
     description: "Text input, image output"
     examples: ["Stable Diffusion", "Flux", "DALL-E"]
-  
-  image-to-image:
-    description: "Image input, image output"
-    examples: ["SD img2img", "ControlNet"]
   
   text-to-audio:
     description: "Text input, audio output"
@@ -150,11 +133,20 @@ modalities:
   text-to-embedding:
     description: "Text input, vector output"
     examples: ["text-embedding-3", "BGE"]
+
+protocols:
+  openai:
+    description: "OpenAI-compatible /v1/chat/completions"
+    auth: "Bearer token"
   
-  text-to-video:
-    description: "Text input, video output"
-    examples: ["Sora", "Runway"]
+  ollama:
+    description: "Ollama /api/chat format"
+    auth: "Bearer token"
   
-  video-to-text:
-    description: "Video input, text output"
-    examples: ["Video understanding models"]
+  gemini:
+    description: "Google Gemini generateContent API"
+    auth: "Query parameter ?key="
+  
+  cloudflare:
+    description: "Cloudflare Workers AI format"
+    auth: "Bearer token"

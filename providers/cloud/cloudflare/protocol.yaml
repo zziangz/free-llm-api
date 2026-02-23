@@ -1,0 +1,203 @@
+# Cloudflare Workers AI Protocol Specification
+# Defines how to translate OpenAI-compatible requests to Cloudflare's native API
+#
+# This allows tools to use a standard OpenAI interface while an adapter
+# handles the translation to Cloudflare's custom format.
+
+$schema: "https://freeway.ai/schemas/protocol-adapter-v1.json"
+name: "cloudflare-workers-ai"
+version: "1.0"
+baseProtocol: "openai"
+targetProtocol: "cloudflare-workers-ai"
+
+# Environment variables required
+env:
+  CLOUDFLARE_AI_API_KEY:
+    description: "Cloudflare API Token"
+    required: true
+  CLOUDFLARE_AI_ACCOUNT_ID:
+    description: "Cloudflare Account ID"
+    required: true
+
+# URL construction
+url:
+  template: "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}"
+  variables:
+    account_id:
+      source: "env"
+      key: "CLOUDFLARE_AI_ACCOUNT_ID"
+    model:
+      source: "request.model"
+
+# Authentication
+auth:
+  type: "header"
+  header: "Authorization"
+  template: "Bearer {api_key}"
+  variables:
+    api_key:
+      source: "env"
+      key: "CLOUDFLARE_AI_API_KEY"
+
+# Request transformation (OpenAI → Cloudflare)
+request:
+  method: "POST"
+  contentType: "application/json"
+  
+  body:
+    # Fields to pass through unchanged
+    passthrough:
+      - "messages"
+      - "temperature"
+      - "max_tokens"
+      - "top_p"
+      - "stream"
+    
+    # Fields to remove (model goes in URL, others unsupported)
+    remove:
+      - "model"
+      - "frequency_penalty"
+      - "presence_penalty"
+      - "logprobs"
+      - "top_logprobs"
+      - "n"
+      - "seed"
+      - "stop"
+      - "user"
+
+# Response transformation (Cloudflare → OpenAI)
+response:
+  # Non-streaming response
+  sync:
+    # Cloudflare returns: { "result": { "response": "..." }, "success": true }
+    # OpenAI expects:     { "id": "...", "choices": [{ "message": { "content": "..." } }] }
+    mapping:
+      id:
+        generator: "uuid"
+        prefix: "chatcmpl-cf-"
+      object:
+        constant: "chat.completion"
+      created:
+        generator: "timestamp"
+      model:
+        source: "request.model"
+      choices:
+        type: "array"
+        items:
+          - index: 0
+            message:
+              role: "assistant"
+              content:
+                source: "response.result.response"
+            finish_reason: "stop"
+      usage:
+        source: "response.result.usage"
+        fallback:
+          prompt_tokens: 0
+          completion_tokens: 0
+          total_tokens: 0
+
+  # Streaming response
+  stream:
+    # Cloudflare sends: data: {"response": "token"}
+    # OpenAI expects:   data: {"choices": [{"delta": {"content": "token"}}]}
+    input_format: "sse"
+    input_field: "response"
+    output_template:
+      id:
+        source: "request_id"
+      object:
+        constant: "chat.completion.chunk"
+      created:
+        generator: "timestamp"
+      model:
+        source: "request.model"
+      choices:
+        type: "array"
+        items:
+          - index: 0
+            delta:
+              content:
+                source: "chunk.response"
+            finish_reason: null
+
+# Error mapping
+errors:
+  - code: 7003
+    type: "invalid_request_error"
+    message: "Invalid model specified"
+  - code: 9106
+    type: "rate_limit_error"
+    message: "Neuron limit exceeded"
+  - code: 10000
+    type: "authentication_error"
+    message: "Invalid API token"
+
+# Endpoint variants for different model types
+endpoints:
+  chat:
+    path: "/ai/run/{model}"
+    supported_models:
+      - "@cf/meta/*"
+      - "@cf/google/*"
+      - "@cf/mistralai/*"
+      - "@cf/qwen/*"
+      - "@cf/openai/gpt-*"
+  
+  embeddings:
+    path: "/ai/run/{model}"
+    request:
+      rename:
+        input: "text"
+    response:
+      # Cloudflare: {"result": {"data": [[0.1, 0.2, ...]]}}
+      # OpenAI:     {"data": [{"embedding": [0.1, 0.2, ...], "index": 0}]}
+      mapping:
+        data:
+          source: "response.result.data"
+          transform: "wrap_embeddings"
+    supported_models:
+      - "@cf/baai/*"
+      - "@cf/*/embed*"
+  
+  images:
+    path: "/ai/run/{model}"
+    request:
+      passthrough:
+        - "prompt"
+        - "num_steps"
+        - "guidance"
+      rename:
+        n: "num_images"
+    response:
+      # Model-specific, varies
+    supported_models:
+      - "@cf/black-forest-labs/*"
+      - "@cf/stabilityai/*"
+      - "@cf/bytedance/*"
+  
+  audio_transcription:
+    path: "/ai/run/{model}"
+    request:
+      # Audio is sent as base64 or file
+      passthrough:
+        - "audio"
+    response:
+      mapping:
+        text:
+          source: "response.result.text"
+    supported_models:
+      - "@cf/openai/whisper*"
+      - "@cf/deepgram/*"
+  
+  audio_speech:
+    path: "/ai/run/{model}"
+    request:
+      rename:
+        input: "text"
+    response:
+      # Returns audio bytes
+      content_type: "audio/wav"
+    supported_models:
+      - "@cf/myshell-ai/melotts"
+      - "@cf/deepgram/aura-*"

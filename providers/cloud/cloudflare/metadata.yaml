@@ -1,0 +1,203 @@
+# Cloudflare Workers AI Model Metadata
+# Curated from https://developers.cloudflare.com/workers-ai/models/
+# Last updated: 2026-02-22
+#
+# This file contains curated metadata for Cloudflare Workers AI models
+# to enable accurate capability detection in the parser
+
+# Task type to modality mapping
+# Used by update.py to convert Cloudflare task types to schema modalities
+task_to_modality:
+  "Text Generation": "text-to-text"
+  "Text-to-Image": "text-to-image"
+  "Automatic Speech Recognition": "audio-to-text"
+  "Text-to-Speech": "text-to-audio"
+  "Text Embeddings": "text-to-embedding"
+  "Image-to-Text": "image-to-text"
+  "Translation": "text-to-text"
+  "Text Classification": "text-to-text"
+  "Summarization": "text-to-text"
+  "Object Detection": "image-to-text"
+  "Image Classification": "image-to-text"
+  "Voice Activity Detection": "audio-to-text"
+
+# Vision/Multimodal models that support image input
+# These models have both text-to-text and image-to-text modalities
+vision_models:
+  - "@cf/meta/llama-3.2-11b-vision-instruct"
+  - "@cf/meta/llama-4-scout-17b-16e-instruct"
+  - "@cf/llava-hf/llava-1.5-7b-hf"
+  - "@cf/unum/uform-gen2-qwen-500m"
+  - "@cf/google/gemma-3-12b-it"  # Gemma 3 is multimodal
+
+# Models that support function/tool calling
+function_calling_models:
+  - "@cf/meta/llama-4-scout-17b-16e-instruct"
+  - "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+  - "@cf/zai-org/glm-4.7-flash"
+  - "@cf/qwen/qwen3-30b-a3b-fp8"
+  - "@cf/mistralai/mistral-small-3.1-24b-instruct"
+  - "@cf/nousresearch/hermes-2-pro-mistral-7b"
+
+# Context window overrides (tokens)
+# Default is 8192 for most models
+context_windows:
+  # Large context models
+  "@cf/zai-org/glm-4.7-flash": 131072
+  "@cf/qwen/qwq-32b": 131072
+  "@cf/qwen/qwen2.5-coder-32b-instruct": 131072
+  "@cf/google/gemma-3-12b-it": 128000
+  "@cf/mistralai/mistral-small-3.1-24b-instruct": 128000
+  "@cf/mistralai/mistral-7b-instruct-v0.2": 32768
+  
+  # Standard Llama 3.x models - 128K
+  "@cf/meta/llama-3.1-8b-instruct": 131072
+  "@cf/meta/llama-3.1-8b-instruct-fp8": 131072
+  "@cf/meta/llama-3.1-8b-instruct-awq": 131072
+  "@cf/meta/llama-3.1-8b-instruct-fast": 131072
+  "@cf/meta/llama-3.1-70b-instruct": 131072
+  "@cf/meta/llama-3.1-70b-instruct-fp8-fast": 131072
+  "@cf/meta/llama-3.2-1b-instruct": 131072
+  "@cf/meta/llama-3.2-3b-instruct": 131072
+  "@cf/meta/llama-3.2-11b-vision-instruct": 131072
+  "@cf/meta/llama-3.3-70b-instruct-fp8-fast": 131072
+  
+  # Llama 4
+  "@cf/meta/llama-4-scout-17b-16e-instruct": 131072
+  
+  # Older models with smaller context
+  "@cf/meta/llama-2-7b-chat-fp16": 4096
+  "@cf/meta/llama-2-7b-chat-int8": 4096
+  "@cf/meta/llama-3-8b-instruct": 8192
+  "@cf/meta/llama-3-8b-instruct-awq": 8192
+  "@cf/meta/meta-llama-3-8b-instruct": 8192
+  
+  # DeepSeek
+  "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b": 131072
+  "@cf/thebloke/deepseek-coder-6.7b-instruct-awq": 16384
+  "@cf/thebloke/deepseek-coder-6.7b-base-awq": 16384
+  "@cf/deepseek/deepseek-math-7b-instruct": 4096
+  
+  # OpenAI GPT-OSS
+  "@cf/openai/gpt-oss-120b": 131072
+  "@cf/openai/gpt-oss-20b": 131072
+  
+  # IBM Granite
+  "@cf/ibm-granite/granite-4.0-h-micro": 131072
+
+# Models marked as deprecated on Cloudflare docs
+# These will be excluded or marked accordingly
+deprecated_models:
+  - "@cf/fblgit/una-cybertron-7b-v2-bf16"
+  - "@cf/nexusflow/starling-lm-7b-beta"
+  - "@cf/tinyllama/tinyllama-1.1b-chat-v1.0"
+  - "@cf/qwen/qwen1.5-14b-chat-awq"
+  - "@cf/qwen/qwen1.5-7b-chat-awq"
+  - "@cf/qwen/qwen1.5-1.8b-chat"
+  - "@cf/qwen/qwen1.5-0.5b-chat"
+  - "@cf/thebloke/discolm-german-7b-v1-awq"
+  - "@cf/tiiuae/falcon-7b-instruct"
+  - "@cf/openchat/openchat-3.5-0106"
+  - "@cf/thebloke/llamaguard-7b-awq"
+  - "@cf/thebloke/neural-chat-7b-v3-1-awq"
+  - "@cf/thebloke/openhermes-2.5-mistral-7b-awq"
+  - "@cf/thebloke/llama-2-13b-chat-awq"
+  - "@cf/thebloke/mistral-7b-instruct-v0.1-awq"
+  - "@cf/thebloke/zephyr-7b-beta-awq"
+
+# Models marked as Beta
+beta_models:
+  - "@cf/llava-hf/llava-1.5-7b-hf"
+  - "@cf/fblgit/una-cybertron-7b-v2-bf16"
+  - "@cf/openai/whisper-tiny-en"
+  - "@cf/mistralai/mistral-7b-instruct-v0.2"
+  - "@cf/google/gemma-7b-it-lora"
+  - "@cf/google/gemma-2b-it-lora"
+  - "@cf/meta-llama/llama-2-7b-chat-hf-lora"
+  - "@cf/google/gemma-7b-it"
+  - "@cf/nexusflow/starling-lm-7b-beta"
+  - "@cf/nousresearch/hermes-2-pro-mistral-7b"
+  - "@cf/mistralai/mistral-7b-instruct-v0.2-lora"
+  - "@cf/qwen/qwen1.5-1.8b-chat"
+  - "@cf/unum/uform-gen2-qwen-500m"
+  - "@cf/facebook/bart-large-cnn"
+  - "@cf/microsoft/phi-2"
+  - "@cf/tinyllama/tinyllama-1.1b-chat-v1.0"
+  - "@cf/qwen/qwen1.5-14b-chat-awq"
+  - "@cf/qwen/qwen1.5-7b-chat-awq"
+  - "@cf/qwen/qwen1.5-0.5b-chat"
+  - "@cf/thebloke/discolm-german-7b-v1-awq"
+  - "@cf/tiiuae/falcon-7b-instruct"
+  - "@cf/openchat/openchat-3.5-0106"
+  - "@cf/defog/sqlcoder-7b-2"
+  - "@cf/deepseek/deepseek-math-7b-instruct"
+  - "@cf/facebook/detr-resnet-50"
+  - "@cf/bytedance/stable-diffusion-xl-lightning"
+  - "@cf/runwayml/stable-diffusion-v1-5-img2img"
+  - "@cf/runwayml/stable-diffusion-v1-5-inpainting"
+  - "@cf/thebloke/deepseek-coder-6.7b-instruct-awq"
+  - "@cf/thebloke/deepseek-coder-6.7b-base-awq"
+  - "@cf/thebloke/llamaguard-7b-awq"
+  - "@cf/thebloke/neural-chat-7b-v3-1-awq"
+  - "@cf/thebloke/openhermes-2.5-mistral-7b-awq"
+  - "@cf/thebloke/llama-2-13b-chat-awq"
+  - "@cf/thebloke/mistral-7b-instruct-v0.1-awq"
+  - "@cf/thebloke/zephyr-7b-beta-awq"
+  - "@cf/stabilityai/stable-diffusion-xl-base-1.0"
+
+# Models that support LoRA adapters
+lora_models:
+  - "@cf/meta/llama-3.2-11b-vision-instruct"
+  - "@cf/qwen/qwq-32b"
+  - "@cf/qwen/qwen2.5-coder-32b-instruct"
+  - "@cf/mistralai/mistral-7b-instruct-v0.2"
+  - "@cf/google/gemma-7b-it-lora"
+  - "@cf/google/gemma-2b-it-lora"
+  - "@cf/meta-llama/llama-2-7b-chat-hf-lora"
+  - "@cf/google/gemma-7b-it"
+  - "@cf/mistralai/mistral-7b-instruct-v0.2-lora"
+  - "@cf/mistralai/mistral-7b-instruct-v0.1"
+  - "@cf/meta/llama-guard-3-8b"
+
+# Models that support batch processing
+batch_models:
+  - "@cf/meta/llama-4-scout-17b-16e-instruct"
+  - "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+  - "@cf/qwen/qwen3-30b-a3b-fp8"
+  - "@cf/openai/whisper-large-v3-turbo"
+  - "@cf/deepgram/aura-1"
+  - "@cf/deepgram/aura-2-en"
+  - "@cf/deepgram/aura-2-es"
+  - "@cf/deepgram/nova-3"
+  - "@cf/baai/bge-large-en-v1.5"
+  - "@cf/baai/bge-small-en-v1.5"
+  - "@cf/baai/bge-base-en-v1.5"
+  - "@cf/meta/m2m100-1.2b"
+  - "@cf/pipecat-ai/smart-turn-v2"
+
+# Models that support real-time streaming
+realtime_models:
+  - "@cf/deepgram/aura-1"
+  - "@cf/deepgram/aura-2-en"
+  - "@cf/deepgram/aura-2-es"
+  - "@cf/deepgram/nova-3"
+  - "@cf/deepgram/flux"
+  - "@cf/pipecat-ai/smart-turn-v2"
+
+# Partner models (may have different pricing/availability)
+partner_models:
+  - "@cf/black-forest-labs/flux-2-klein-9b"
+  - "@cf/black-forest-labs/flux-2-klein-4b"
+  - "@cf/black-forest-labs/flux-2-dev"
+  - "@cf/deepgram/aura-1"
+  - "@cf/deepgram/aura-2-en"
+  - "@cf/deepgram/aura-2-es"
+  - "@cf/deepgram/nova-3"
+  - "@cf/deepgram/flux"
+  - "@cf/leonardo/lucid-origin"
+  - "@cf/leonardo/phoenix-1.0"
+
+# Default values
+defaults:
+  contextWindow: 8192
+  maxOutputTokens: 4096

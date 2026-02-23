@@ -1,0 +1,531 @@
+$id: mistral
+name: Mistral AI
+description: Mistral AI - Open-source and proprietary frontier models from France
+url: https://mistral.ai
+docs: https://docs.mistral.ai
+auth:
+  type: bearer
+  keyLabel: Mistral API Key
+  keyUrl: https://console.mistral.ai/api-keys
+endpoint:
+  baseUrl: https://api.mistral.ai/v1
+  protocol: openai
+limits:
+  requests:
+    perMinute: 1
+    description: 'Free tier: 1 req/min, 500K tokens/min, 1B tokens/month'
+  tokens:
+    perMinute: 500000
+    perMonth: 1000000000
+models:
+- id: mistral-large-latest
+  upstream: mistral-large-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: pixtral-large-latest
+  upstream: pixtral-large-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-medium-latest
+  upstream: mistral-medium-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: magistral-medium-latest
+  upstream: magistral-medium-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: devstral-medium-latest
+  upstream: devstral-medium-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: ministral-14b-latest
+  upstream: ministral-14b-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: devstral-latest
+  upstream: devstral-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: magistral-small-latest
+  upstream: magistral-small-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-small-latest
+  upstream: mistral-small-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: ministral-8b-latest
+  upstream: ministral-8b-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: devstral-small-latest
+  upstream: devstral-small-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: codestral-latest
+  upstream: codestral-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+    fim: true
+- id: ministral-3b-latest
+  upstream: ministral-3b-latest
+  free: true
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-tiny-latest
+  upstream: mistral-tiny-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: voxtral-mini-latest
+  upstream: voxtral-mini-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: mistral-vibe-cli-latest
+  upstream: mistral-vibe-cli-latest
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: codestral-2508
+  upstream: codestral-2508
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 256000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+    fim: true
+- id: devstral-2512
+  upstream: devstral-2512
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: devstral-medium-2507
+  upstream: devstral-medium-2507
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: devstral-small-2507
+  upstream: devstral-small-2507
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: labs-devstral-small-2512
+  upstream: labs-devstral-small-2512
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: labs-mistral-small-creative
+  upstream: labs-mistral-small-creative
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: magistral-medium-2509
+  upstream: magistral-medium-2509
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: magistral-small-2509
+  upstream: magistral-small-2509
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: ministral-14b-2512
+  upstream: ministral-14b-2512
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: ministral-3b-2512
+  upstream: ministral-3b-2512
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: ministral-8b-2512
+  upstream: ministral-8b-2512
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-large-2411
+  upstream: mistral-large-2411
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistral-large-2512
+  upstream: mistral-large-2512
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 262144
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-large-pixtral-2411
+  upstream: mistral-large-pixtral-2411
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-medium-2505
+  upstream: mistral-medium-2505
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-medium-2508
+  upstream: mistral-medium-2508
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-small-2501
+  upstream: mistral-small-2501
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistral-small-2506
+  upstream: mistral-small-2506
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: mistral-tiny-2407
+  upstream: mistral-tiny-2407
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: mistral-vibe-cli-with-tools
+  upstream: mistral-vibe-cli-with-tools
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: open-mistral-nemo
+  upstream: open-mistral-nemo
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: open-mistral-nemo-2407
+  upstream: open-mistral-nemo-2407
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: pixtral-large-2411
+  upstream: pixtral-large-2411
+  free: false
+  modalities:
+  - text-to-text
+  - image-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: true
+    json: true
+- id: voxtral-mini-2507
+  upstream: voxtral-mini-2507
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 32768
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+status: active
+env: MISTRAL_API_KEY
+tags:
+- free
+- openai-compatible
+- rate-limited

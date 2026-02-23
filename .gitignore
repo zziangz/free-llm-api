@@ -1,7 +1,22 @@
+# Secrets
 .env
-# we use config.yaml to control the endpoints and apiKey
-.env.example
-# vim 
+
+# Editor files
 *.swp
-# draft
+*.local
+
+# Draft/work-in-progress
 draft.md
+
+# Provider discovery artifacts (regeneratable from API)
+providers/**/models.json
+providers/**/models.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+tests/

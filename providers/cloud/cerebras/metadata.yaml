@@ -1,0 +1,59 @@
+# Cerebras Model Metadata
+# https://cloud.cerebras.ai/platform/docs
+# Last updated: 2026-02-22
+#
+# Cerebras uses Wafer Scale Engine for fast inference
+
+# All available models support function calling
+function_calling_models:
+  - "gpt-oss-120b"
+  - "qwen-3-235b-a22b-instruct-2507"
+  - "zai-glm-4.7"
+  - "llama3.1-8b"
+
+# JSON mode support
+json_mode_models:
+  - "gpt-oss-120b"
+  - "qwen-3-235b-a22b-instruct-2507"
+  - "zai-glm-4.7"
+  - "llama3.1-8b"
+
+# Context windows (manually curated - API doesn't provide)
+context_windows:
+  "gpt-oss-120b": 65536
+  "qwen-3-235b-a22b-instruct-2507": 131072
+  "zai-glm-4.7": 128000
+  "llama3.1-8b": 65536
+
+# Max output tokens
+max_output_tokens:
+  "gpt-oss-120b": 8192
+  "qwen-3-235b-a22b-instruct-2507": 16384
+  "zai-glm-4.7": 8192
+  "llama3.1-8b": 8192
+
+# All models are free
+free_models:
+  - "gpt-oss-120b"
+  - "qwen-3-235b-a22b-instruct-2507"
+  - "zai-glm-4.7"
+  - "llama3.1-8b"
+
+# Vision models (none currently)
+vision_models: []
+
+# Rate limits
+limits:
+  requests:
+    perMinute: 30
+    perHour: 900
+    perDay: 14400
+  tokens:
+    perMinute: 60000
+    perHour: 1000000
+    perDay: 1000000
+
+# Default settings
+defaults:
+  contextWindow: 65536
+  maxOutputTokens: 8192

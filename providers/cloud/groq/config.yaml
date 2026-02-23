@@ -1,0 +1,174 @@
+$id: groq
+name: Groq
+description: Ultra-fast inference with LPU (Language Processing Unit) technology
+url: https://groq.com
+docs: https://console.groq.com/docs
+auth:
+  type: bearer
+  keyLabel: Groq API Key
+  keyUrl: https://console.groq.com/keys
+  keyPrefix: gsk_
+endpoint:
+  baseUrl: https://api.groq.com/openai/v1
+  protocol: openai
+limits:
+  requests:
+    perMinute: 30
+    perDay: 14400
+  tokens:
+    perMinute: 18000
+    perDay: 1000000
+models:
+# Ordered by LiveBench score: Kimi K2 (48.10) > GPT OSS 120B (46.09) > Llama 3.3 70B (~45) > Qwen3 32B (43.56)
+- id: moonshotai/kimi-k2-instruct-0905
+  upstream: moonshotai/kimi-k2-instruct-0905
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 262144
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: moonshotai/kimi-k2-instruct
+  upstream: moonshotai/kimi-k2-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: openai/gpt-oss-120b
+  upstream: openai/gpt-oss-120b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 65536
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: llama-3.3-70b-versatile
+  upstream: llama-3.3-70b-versatile
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 32768
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen/qwen3-32b
+  upstream: qwen/qwen3-32b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 40960
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: openai/gpt-oss-20b
+  upstream: openai/gpt-oss-20b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 65536
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta-llama/llama-4-maverick-17b-128e-instruct
+  upstream: meta-llama/llama-4-maverick-17b-128e-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: meta-llama/llama-4-scout-17b-16e-instruct
+  upstream: meta-llama/llama-4-scout-17b-16e-instruct
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: llama-3.1-8b-instant
+  upstream: llama-3.1-8b-instant
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 131072
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: allam-2-7b
+  upstream: allam-2-7b
+  free: false
+  modalities:
+  - text-to-text
+  contextWindow: 4096
+  maxOutputTokens: 4096
+  capabilities:
+    streaming: true
+    tools: false
+    vision: false
+    json: false
+- id: groq/compound
+  upstream: groq/compound
+  free: true
+  type: compound
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+- id: groq/compound-mini
+  upstream: groq/compound-mini
+  free: true
+  type: compound
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: false
+status: active
+env: GROQ_API_KEY
+tags:
+- free
+- fast
+- openai-compatible

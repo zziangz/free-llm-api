@@ -1,0 +1,33 @@
+# OpenRouter Model Metadata
+# https://openrouter.ai/docs
+# Last updated: 2026-02-22
+#
+# OpenRouter aggregates models from many providers
+# Free models have ":free" suffix in their ID
+
+# Free tier rate limits
+limits:
+  requests:
+    perMinute: 20
+    perDay: 50
+
+# Vision-capable models (free)
+vision_models:
+  - "nvidia/nemotron-nano-12b-v2-vl:free"
+
+# Models with tool/function support (based on supported_parameters)
+# Auto-detected from API: supported_parameters includes "tools"
+
+# Models with JSON mode
+# Auto-detected from API: supported_parameters includes "response_format"
+
+# Free models (auto-detected from ":free" suffix)
+# We only include free models in config.yaml
+
+# Deprecated/retired models
+deprecated_models: []
+
+# Default settings
+defaults:
+  contextWindow: 131072
+  maxOutputTokens: 8192

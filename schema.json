@@ -68,7 +68,7 @@
         },
         "protocol": {
           "type": "string",
-          "enum": ["openai", "ollama", "anthropic", "gemini", "custom"],
+          "enum": ["openai", "ollama", "anthropic", "gemini", "cloudflare", "custom"],
           "description": "API protocol to use"
         },
         "headers": {
@@ -83,21 +83,19 @@
     "limits": {
       "type": "object",
       "properties": {
-        "requestsPerMinute": {
-          "type": "integer",
-          "minimum": 1
+        "requests": {
+          "type": "object",
+          "properties": {
+            "perMinute": { "type": "integer", "minimum": 1 },
+            "perDay": { "type": "integer", "minimum": 1 }
+          }
         },
-        "requestsPerDay": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "tokensPerMinute": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "tokensPerDay": {
-          "type": "integer",
-          "minimum": 1
+        "tokens": {
+          "type": "object",
+          "properties": {
+            "perMinute": { "type": "integer", "minimum": 1 },
+            "perDay": { "type": "integer", "minimum": 1 }
+          }
         },
         "concurrent": {
           "type": "integer",
@@ -129,15 +127,11 @@
               "type": "string",
               "enum": [
                 "text-to-text",
-                "text-image-to-text",
                 "image-to-text",
                 "text-to-image",
-                "image-to-image",
                 "text-to-audio",
                 "audio-to-text",
-                "text-to-embedding",
-                "text-to-video",
-                "video-to-text"
+                "text-to-embedding"
               ]
             },
             "minItems": 1,

@@ -1,0 +1,1019 @@
+$id: "cloudflare"
+name: "Cloudflare Workers AI"
+description: "Cloudflare Workers AI - Run AI models at the edge with 10,000 free neurons/day"
+url: "https://ai.cloudflare.com"
+docs: "https://developers.cloudflare.com/workers-ai/"
+
+# Protocol adapter for OpenAI compatibility
+# See protocol.yaml for translation spec, adapter.py for implementation
+protocolSpec: "./protocol.yaml"
+
+auth:
+  type: "bearer"
+  keyLabel: "Cloudflare API Token"
+  keyUrl: "https://dash.cloudflare.com/profile/api-tokens"
+
+# Native Cloudflare API (not OpenAI-compatible)
+# Use adapter.py for OpenAI SDK compatibility
+endpoint:
+  baseUrl: "https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/ai/run"
+  protocol: "custom"
+  protocolAdapter: "./adapter.py"
+
+# Cloudflare uses "neurons" as the billing unit
+# Free tier: 10,000 neurons/day. Cost per request varies by model.
+limits:
+  neurons:
+    perDay: 10000
+    description: "Free tier: 10,000 neurons per day (cost varies by model)"
+
+models:
+  - id: "@cf/baai/bge-base-en-v1.5"
+    upstream: "@cf/baai/bge-base-en-v1.5"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/baai/bge-large-en-v1.5"
+    upstream: "@cf/baai/bge-large-en-v1.5"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/baai/bge-m3"
+    upstream: "@cf/baai/bge-m3"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/baai/bge-reranker-base"
+    upstream: "@cf/baai/bge-reranker-base"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/baai/bge-small-en-v1.5"
+    upstream: "@cf/baai/bge-small-en-v1.5"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/bart-large-cnn"
+    upstream: "@cf/bart-large-cnn"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/black-forest-labs/flux-1-schnell"
+    upstream: "@cf/black-forest-labs/flux-1-schnell"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/black-forest-labs/flux-2-dev"
+    upstream: "@cf/black-forest-labs/flux-2-dev"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/black-forest-labs/flux-2-klein-4b"
+    upstream: "@cf/black-forest-labs/flux-2-klein-4b"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/black-forest-labs/flux-2-klein-9b"
+    upstream: "@cf/black-forest-labs/flux-2-klein-9b"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepgram/aura-1"
+    upstream: "@cf/deepgram/aura-1"
+    free: true
+    modalities:
+      - text-to-audio
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepgram/aura-2-en"
+    upstream: "@cf/deepgram/aura-2-en"
+    free: true
+    modalities:
+      - text-to-audio
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepgram/aura-2-es"
+    upstream: "@cf/deepgram/aura-2-es"
+    free: true
+    modalities:
+      - text-to-audio
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepgram/flux"
+    upstream: "@cf/deepgram/flux"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepgram/nova-3"
+    upstream: "@cf/deepgram/nova-3"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b"
+    upstream: "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/detr-resnet-50"
+    upstream: "@cf/detr-resnet-50"
+    free: true
+    modalities:
+      - image-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/distilbert-sst-2-int8"
+    upstream: "@cf/distilbert-sst-2-int8"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/dreamshaper-8-lcm"
+    upstream: "@cf/dreamshaper-8-lcm"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/glm-4.7-flash"
+    upstream: "@cf/glm-4.7-flash"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "@cf/google/embeddinggemma-300m"
+    upstream: "@cf/google/embeddinggemma-300m"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/google/gemma-2b-it-lora"
+    upstream: "@cf/google/gemma-2b-it-lora"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/google/gemma-3-12b-it"
+    upstream: "@cf/google/gemma-3-12b-it"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 128000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+
+  - id: "@cf/google/gemma-7b-it"
+    upstream: "@cf/google/gemma-7b-it"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/google/gemma-7b-it-lora"
+    upstream: "@cf/google/gemma-7b-it-lora"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/google/gemma-sea-lion-v4-27b-it"
+    upstream: "@cf/google/gemma-sea-lion-v4-27b-it"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/ibm-granite/granite-4.0-h-micro"
+    upstream: "@cf/ibm-granite/granite-4.0-h-micro"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "@cf/indictrans2-en-indic-1B"
+    upstream: "@cf/indictrans2-en-indic-1B"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/leonardo/lucid-origin"
+    upstream: "@cf/leonardo/lucid-origin"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/leonardo/phoenix-1.0"
+    upstream: "@cf/leonardo/phoenix-1.0"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/llava-1.5-7b-hf"
+    upstream: "@cf/llava-1.5-7b-hf"
+    free: true
+    modalities:
+      - image-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: true
+      json: false
+    beta: true
+
+  - id: "@cf/melotts"
+    upstream: "@cf/melotts"
+    free: true
+    modalities:
+      - text-to-audio
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-2-7b-chat-fp16"
+    upstream: "@cf/meta/llama-2-7b-chat-fp16"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 4096
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-2-7b-chat-int8"
+    upstream: "@cf/meta/llama-2-7b-chat-int8"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 4096
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3-8b-instruct"
+    upstream: "@cf/meta/llama-3-8b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3-8b-instruct-awq"
+    upstream: "@cf/meta/llama-3-8b-instruct-awq"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-70b-instruct"
+    upstream: "@cf/meta/llama-3.1-70b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-70b-instruct-fp8-fast"
+    upstream: "@cf/meta/llama-3.1-70b-instruct-fp8-fast"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-8b-instruct"
+    upstream: "@cf/meta/llama-3.1-8b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-8b-instruct-awq"
+    upstream: "@cf/meta/llama-3.1-8b-instruct-awq"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-8b-instruct-fast"
+    upstream: "@cf/meta/llama-3.1-8b-instruct-fast"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.1-8b-instruct-fp8"
+    upstream: "@cf/meta/llama-3.1-8b-instruct-fp8"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.2-11b-vision-instruct"
+    upstream: "@cf/meta/llama-3.2-11b-vision-instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: true
+      json: false
+
+  - id: "@cf/meta/llama-3.2-1b-instruct"
+    upstream: "@cf/meta/llama-3.2-1b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.2-3b-instruct"
+    upstream: "@cf/meta/llama-3.2-3b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    upstream: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "@cf/meta/llama-4-scout-17b-16e-instruct"
+    upstream: "@cf/meta/llama-4-scout-17b-16e-instruct"
+    free: true
+    modalities:
+      - text-to-text
+      - image-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: true
+      json: true
+
+  - id: "@cf/meta/llama-guard-3-8b"
+    upstream: "@cf/meta/llama-guard-3-8b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/m2m100-1.2b"
+    upstream: "@cf/meta/m2m100-1.2b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/meta/meta-llama-3-8b-instruct"
+    upstream: "@cf/meta/meta-llama-3-8b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/microsoft/phi-2"
+    upstream: "@cf/microsoft/phi-2"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/microsoft/resnet-50"
+    upstream: "@cf/microsoft/resnet-50"
+    free: true
+    modalities:
+      - image-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/mistralai/hermes-2-pro-mistral-7b"
+    upstream: "@cf/mistralai/hermes-2-pro-mistral-7b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+    beta: true
+
+  - id: "@cf/mistralai/mistral-7b-instruct-v0.1"
+    upstream: "@cf/mistralai/mistral-7b-instruct-v0.1"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/mistralai/mistral-7b-instruct-v0.2"
+    upstream: "@cf/mistralai/mistral-7b-instruct-v0.2"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 32768
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/mistralai/mistral-7b-instruct-v0.2-lora"
+    upstream: "@cf/mistralai/mistral-7b-instruct-v0.2-lora"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/mistralai/mistral-small-3.1-24b-instruct"
+    upstream: "@cf/mistralai/mistral-small-3.1-24b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 128000
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "@cf/openai/gpt-oss-120b"
+    upstream: "@cf/openai/gpt-oss-120b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/openai/gpt-oss-20b"
+    upstream: "@cf/openai/gpt-oss-20b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/openai/whisper"
+    upstream: "@cf/openai/whisper"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/openai/whisper-large-v3-turbo"
+    upstream: "@cf/openai/whisper-large-v3-turbo"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/openai/whisper-tiny-en"
+    upstream: "@cf/openai/whisper-tiny-en"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/plamo-embedding-1b"
+    upstream: "@cf/plamo-embedding-1b"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/qwen/qwen2.5-coder-32b-instruct"
+    upstream: "@cf/qwen/qwen2.5-coder-32b-instruct"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/qwen/qwen3-30b-a3b-fp8"
+    upstream: "@cf/qwen/qwen3-30b-a3b-fp8"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: true
+      vision: false
+      json: true
+
+  - id: "@cf/qwen/qwen3-embedding-0.6b"
+    upstream: "@cf/qwen/qwen3-embedding-0.6b"
+    free: true
+    modalities:
+      - text-to-embedding
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/qwen/qwq-32b"
+    upstream: "@cf/qwen/qwq-32b"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 131072
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/qwen/uform-gen2-qwen-500m"
+    upstream: "@cf/qwen/uform-gen2-qwen-500m"
+    free: true
+    modalities:
+      - image-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/smart-turn-v2"
+    upstream: "@cf/smart-turn-v2"
+    free: true
+    modalities:
+      - audio-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+
+  - id: "@cf/sqlcoder-7b-2"
+    upstream: "@cf/sqlcoder-7b-2"
+    free: true
+    modalities:
+      - text-to-text
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: true
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/stabilityai/stable-diffusion-xl-base-1.0"
+    upstream: "@cf/stabilityai/stable-diffusion-xl-base-1.0"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/stable-diffusion-v1-5-img2img"
+    upstream: "@cf/stable-diffusion-v1-5-img2img"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/stable-diffusion-v1-5-inpainting"
+    upstream: "@cf/stable-diffusion-v1-5-inpainting"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+  - id: "@cf/stable-diffusion-xl-lightning"
+    upstream: "@cf/stable-diffusion-xl-lightning"
+    free: true
+    modalities:
+      - text-to-image
+    contextWindow: 8192
+    maxOutputTokens: 4096
+    capabilities:
+      streaming: false
+      tools: false
+      vision: false
+      json: false
+    beta: true
+
+status: "active"
+env: "CLOUDFLARE_AI_API_KEY"
+accountIdEnv: "CLOUDFLARE_ACCOUNT_ID"
+tags:
+  - free
+  - edge
+  - cloudflare

@@ -1,0 +1,78 @@
+$id: cerebras
+name: Cerebras
+description: Ultra-fast inference with Wafer Scale Engine technology
+url: https://cerebras.ai
+docs: https://cloud.cerebras.ai/platform/docs
+auth:
+  type: bearer
+  keyLabel: Cerebras API Key
+  keyUrl: https://cloud.cerebras.ai/platform/
+  keyPrefix: csk-
+endpoint:
+  baseUrl: https://api.cerebras.ai/v1
+  protocol: openai
+limits:
+  requests:
+    perMinute: 30
+    perHour: 900
+    perDay: 14400
+  tokens:
+    perMinute: 60000
+    perHour: 1000000
+    perDay: 1000000
+models:
+# Ordered by LiveBench score: GLM 4.7 (58.09) > Qwen 3 235B (52.97) > GPT OSS 120B (46.09)
+- id: zai-glm-4.7
+  upstream: zai-glm-4.7
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 128000
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: qwen-3-235b-a22b-instruct-2507
+  upstream: qwen-3-235b-a22b-instruct-2507
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 131072
+  maxOutputTokens: 16384
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: gpt-oss-120b
+  upstream: gpt-oss-120b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 65536
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+- id: llama3.1-8b
+  upstream: llama3.1-8b
+  free: true
+  modalities:
+  - text-to-text
+  contextWindow: 65536
+  maxOutputTokens: 8192
+  capabilities:
+    streaming: true
+    tools: true
+    vision: false
+    json: true
+status: active
+env: CEREBRAS_API_KEY
+tags:
+- free
+- fast
+- openai-compatible
